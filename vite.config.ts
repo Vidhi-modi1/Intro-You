@@ -85,13 +85,18 @@ import { defineConfig } from 'vite';
         '@': path.resolve(__dirname, './src'),
       },
     },
-     build: {
+ build: {
     target: 'esnext',
-    outDir: 'build', // you can keep 'build' if you set Vercel output dir
+    outDir: 'build',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Disable code splitting for Vercel
+      },
+    },
   },
   server: {
     port: 3000,
     open: true,
   },
-  base: '/', // important for Vercel
+  base: '/', // Correct for Vercel deployment
   });
