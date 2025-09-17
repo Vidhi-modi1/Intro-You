@@ -525,7 +525,7 @@ export function PricingPage({ }: PricingPageProps) {
           </div>
 
           <a href="https://introyou-beta.vercel.app/login"
-            className="mt-12 text-white text-center px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-2 mx-auto justify-center"
+            className="mt-12 text-white text-center px-8 py-3 rounded-lg font-medium transition-all duration-300 btn-link hover:shadow-lg hover:scale-105 inline-flex items-center gap-2 mx-auto justify-center"
             style={{ backgroundColor: "#820080" }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = "#9A0A94";
