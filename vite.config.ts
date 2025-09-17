@@ -1,5 +1,5 @@
 
-  import { defineConfig } from 'vite';
+import { defineConfig } from 'vite';
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
 
@@ -85,13 +85,13 @@
         '@': path.resolve(__dirname, './src'),
       },
     },
-    build: {
-      target: 'esnext',
-      outDir: 'build',
-    },
-    server: {
-      port: 3000,
-      open: true,
-    },
-    base: './',
+     build: {
+    target: 'esnext',
+    outDir: 'build', // you can keep 'build' if you set Vercel output dir
+  },
+  server: {
+    port: 3000,
+    open: true,
+  },
+  base: '/', // important for Vercel
   });

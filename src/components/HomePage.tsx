@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import logoImage from "figma:asset/1317259af126a2231a0e530aedf3b68e2e27ad9e.png";
 import heroBackground from "../assets/banner-video.mov";
@@ -36,11 +37,19 @@ import coupleImage from "figma:asset/3de54880b8a6b5ee1f5705a511ff2be04da832a8.pn
 import yahooLogoExtra from "figma:asset/290973993221e5de301713490e3618ef76960344.png";
 import footerHeartIcon from "figma:asset/825ba557c87de8f2b4335468874e5eb17f98f401.png";
 
-interface HomePageProps {
-  onNavigateToPricing?: () => void;
-}
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import "../styles/swiper-custom.css";
+import { FreeMode, Autoplay, Pagination } from "swiper/modules";
 
-export function HomePage({ onNavigateToPricing }: HomePageProps) {
+
+
+interface HomePageProps {}
+
+export function HomePage({}: HomePageProps) {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userGender, setUserGender] = useState("Woman");
   const [lookingFor, setLookingFor] = useState("Man");
@@ -79,9 +88,25 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
     },
   ];
 
+  // Add this useEffect after your useState
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // Cleanup function to remove class when component unmounts
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [mobileMenuOpen]);
+
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -89,25 +114,20 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center py-[16px] header-main">
+            {/* Left: Hamburger + Socials (Mobile Only for Hamburger) */}
             <div className="flex flex-wrap items-center flex-1 humburger">
-              {/* Left: Hamburger menu button */}
+              {/* Hamburger button - only mobile */}
               <button
-                // onClick={() =>
-                //   setMobileMenuOpen(!mobileMenuOpen)
-                // }
-                className="p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer lg:hidden"
               >
-                {mobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
 
-              {/* Vertical separator */}
-              <div className="w-px h-6 bg-gray-300 mx-4 divider"></div>
+              {/* Vertical separator (only mobile when hamburger is visible) */}
+              <div className="w-px h-6 bg-gray-300 mx-4 divider lg:hidden"></div>
 
-              {/* Social media icons */}
+              {/* Social media icons (always visible) */}
               <div className="flex items-center space-x-4 social-icons">
                 <a
                   href="#"
@@ -131,7 +151,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
             </div>
 
             {/* Center: Logo */}
-            <div className="flex justify-center">
+            <div className="flex justify-center logo-img">
               <img
                 src={logoImage}
                 alt="IntroYou"
@@ -141,9 +161,27 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               />
             </div>
 
+            {/* Desktop Menu (hidden on mobile) */}
+            <nav className="hidden lg:flex space-x-8 mx-10">
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Home</a>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Why IntroYou</a>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">About Us</a>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">How it Works</a>
+              <button 
+                onClick={() => navigate('/pricing')} 
+                className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
+              >
+                Pricing
+              </button>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">FAQ</a>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Contact Us</a>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Terms & Conditions</a>
+              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Privacy Policy</a>
+            </nav>
+
             {/* Right: Login button */}
             <div className="flex-1 flex justify-end login-button">
-              <button
+              <a href="https://introyou-beta.vercel.app/login"
                 className="px-[62px] py-[12px] text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
                 style={{ backgroundColor: "#171D29" }}
                 onMouseEnter={(e) => {
@@ -154,43 +192,152 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                 }}
               >
                 Login
-              </button>
+              </a>
             </div>
           </div>
 
-          {/* Mobile/Desktop menu */}
-          {/* {mobileMenuOpen && (
-            <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
-              <div className="px-4 py-4 space-y-3">
-                <a
-                  href="#"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#820080] hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
-                >
-                  Home
-                </a>
-                <a
-                  href="#how-it-works"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#820080] hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
-                >
-                  How It Works
-                </a>
+          {/* Mobile Menu Overlay with Transitions */}
+          <div
+            className={`
+        fixed inset-0 z-50 bg-white flex flex-col justify-between mobile-menu-main lg:hidden
+        transition-all duration-300 ease-in-out overflow-y-auto
+        ${mobileMenuOpen
+                ? 'opacity-100 visible'
+                : 'opacity-0 invisible'
+              }
+      `}
+            style={{
+              transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
+            }}
+          >
+            {/* Top section */}
+            <div
+              className={`
+          transition-all duration-500 ease-out
+          ${mobileMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 -translate-y-4'
+                }
+        `}
+              style={{
+                transitionDelay: mobileMenuOpen ? '100ms' : '0ms'
+              }}
+            >
+              <div className="flex justify-between items-center px-4 py-4 border-b">
                 <button
-                  onClick={onNavigateToPricing}
-                  className="block w-full text-left px-3 py-2 text-gray-700 hover:text-[#820080] hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200"
                 >
-                  Membership
+                  <X className="h-6 w-6" />
                 </button>
+                <img src={logoImage} alt="IntroYou" className="h-8" />
+                <div className="w-6"></div>
+              </div>
+
+              {/* Buttons */}
+              <div
+                className={`
+            flex gap-2 px-4 py-4 transition-all duration-500 ease-out menu-btns
+            ${mobileMenuOpen
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 -translate-y-4'
+                  }
+          `}
+                style={{
+                  transitionDelay: mobileMenuOpen ? '200ms' : '0ms'
+                }}
+              >
                 <a
-                  href="#about"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#820080] hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
+                  href="/join"
+                  className="flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
+                  style={{ backgroundColor: "#820080" }}
                 >
-                  About
+                  Join Now ♡
                 </a>
+
+                <a
+                  href="/login"
+                  className="flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
+                  style={{ backgroundColor: "#171D29" }}
+                >
+                  Login
+                </a>
+
+              </div>
+
+              {/* Pricing Button */}
+              <div
+                className={`
+            px-4 py-2 transition-all duration-500 ease-out
+            ${mobileMenuOpen
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 -translate-y-4'
+                  }
+          `}
+                style={{
+                  transitionDelay: mobileMenuOpen ? '250ms' : '0ms'
+                }}
+              >
+                {/* <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    navigate('/pricing');
+                  }}
+                  className="w-full py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
+                  style={{ backgroundColor: "#820080" }}
+                >
+                  View Pricing
+                </button> */}
+              </div>
+
+              {/* Menu Links */}
+              <nav
+                className={`
+            px-4 py-4 space-y-4 transition-all duration-500 ease-out
+            ${mobileMenuOpen
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 -translate-y-4'
+                  }
+          `}
+                style={{
+                  transitionDelay: mobileMenuOpen ? '300ms' : '0ms'
+                }}
+              >
+                <p className="font-semibold">Menu</p>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Home</a>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Why IntroYou</a>
+                <a href="\pricing" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">About Us</a>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">How it Works</a>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">FAQ</a>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Contact Us</a>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Terms & Conditions</a>
+                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Privacy Policy</a>
+              </nav>
+            </div>
+
+            {/* Footer */}
+            <div
+              className={`
+          text-center text-xs text-gray-500 transition-all duration-500 ease-out header-footer-copy
+          ${mobileMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
+                }
+        `}
+              style={{
+                transitionDelay: mobileMenuOpen ? '400ms' : '0ms'
+              }}
+            >
+              <p>© 2025 IntroYou</p>
+              <p>All Rights Reserved</p>
+              <div className="bottom-header">
+                <a href="#" className="hover:text-[#820080] transition-colors duration-200">introyou.co.uk</a>
               </div>
             </div>
-          )} */}
+          </div>
         </div>
       </header>
+
 
       {/* Hero/Banner Section */}
       <section
@@ -206,7 +353,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
           playsInline
         />
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">
           <h1 className="text-5xl md:text-[64px] mb-6 playfair-display leading-tight banner-heading">
             The Intentional Way To Date
           </h1>
@@ -215,9 +362,8 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
             real.
           </p>
 
-          <div className="flex flex-col items-center justify-center gap-6 mb-16">
-            <button
-              onClick={onNavigateToPricing}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-16 banner-btn">
+            <a href="https://introyou-beta.vercel.app/onboarding"
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
@@ -228,10 +374,23 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               }}
             >
               Let's Find Your Match
-            </button>
+            </a>
+            {/* <button
+              onClick={() => navigate('/pricing')}
+              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
+              style={{ backgroundColor: "#171D29" }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#2A3441";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "#171D29";
+              }}
+            >
+              View Pricing
+            </button> */}
 
             <a
-              href="#how-it-works"
+              href="https://introyou-beta.vercel.app/onboarding/second"
               className="text-white hover:text-purple-300 transition-colors duration-200 text-lg underline underline-offset-4"
             >
               How It Works?
@@ -251,7 +410,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               In the press
             </span>
           </div>
-          <div class="relative overflow-hidden">
+          
+          {/* Desktop Marquee - Hidden on Mobile */}
+          <div className="relative overflow-hidden hidden md:block">
             <div
               className="flex items-center animate-marquee"
               style={{ gap: "27px" }}
@@ -347,15 +508,92 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               />
             </div>
           </div>
+          
+          {/* Mobile Slider - Visible only on Mobile */}
+          <div className="md:hidden px-4 mobile-slider">
+            <Swiper
+              modules={[FreeMode, Autoplay, Pagination]}
+              spaceBetween={20}
+              slidesPerView={3}
+              freeMode={false}
+              loop={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true,
+              }}
+              className="w-full press-logos-swiper pb-10"
+            >
+              <SwiperSlide>
+                <img
+                  src={bbcLogo}
+                  alt="BBC"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={itvLogo}
+                  alt="ITV"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={yahooLogo}
+                  alt="Yahoo"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={okLogo}
+                  alt="OK!"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={helloLogo}
+                  alt="HELLO!"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={eveningStandardLogo}
+                  alt="Evening Standard"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={metroLogo}
+                  alt="Metro"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={yahooLogoExtra}
+                  alt="Yahoo"
+                  className="h-10 object-contain w-full"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
       </section>
 
       {/* Introduce You Section */}
-      <section className="py-20 px-6 bg-grey">
+      <section className="py-20 px-6 bg-grey intro-wrp">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center">
             {/* Left Content - 5/12 */}
-            <div className="w-full lg:w-5/12">
+            <div className="w-full lg:w-5/12 intro-left">
               <h2 className="text-[44px] mb-[35px] playfair-display leading-tight">
                 Done with apps?
                 <br />
@@ -386,9 +624,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
             </div>
 
             {/* Right Content - Form - 7/12 */}
-            <div className="w-full lg:w-7/12">
+            <div className="w-full lg:w-7/12 intro-right">
               <div
-                className="bg-white p-6 lg:p-8 rounded-2xl"
+                className="bg-white p-6 lg:p-8 rounded-2xl intro-form"
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid #EAEAEA",
@@ -400,7 +638,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                   Who would you like us to introduce you to?
                 </h3>
                 <p className="text-gray-600 mb-4 lg:mb-6 text-sm">
-                  Share your preferences and we'll do the rest
+                  Select your preference to begin your journey.
                 </p>
 
                 <form className="space-y-4">
@@ -442,9 +680,8 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    onClick={onNavigateToPricing}
+                  <a href="https://introyou-beta.vercel.app/login"
+                    onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6 flex items-center justify-center gap-2"
                     style={{ backgroundColor: "#820080" }}
                     onMouseEnter={(e) => {
@@ -458,9 +695,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                     <img
                       src={heartButtonIcon}
                       alt="heart"
-                      className="w-4 h-4"
+                      className="w-4 h-4 h-icon"
                     />
-                  </button>
+                  </a>
                 </form>
               </div>
             </div>
@@ -469,7 +706,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
       </section>
 
       {/* Why IntroYou is Different Section */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-white intro-different-wrp">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl mb-4 playfair-display">
@@ -485,9 +722,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
           <div className=" mx-auto">
             <div className="flex flex-wrap justify-center -mx-[6px]">
               {/* Box 1 - Curated Introductions */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -522,7 +759,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               {/* Box 2 - Discreet by Design */}
               <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -554,9 +791,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               </div>
 
               {/* Box 3 - Designed for Real Connections */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-block">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -591,7 +828,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               {/* Box 4 - Quality Over Quantity */}
               <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -625,7 +862,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               {/* Box 5 - A Premium Community */}
               <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -659,10 +896,10 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
           </div>
 
           {/* CTA Button */}
-          <div className="text-center mt-10">
-            <button
-              onClick={onNavigateToPricing}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+          <div className="text-center mt-10 btn-wrp">
+            <a href="https://introyou-beta.vercel.app/login"
+              // onClick={() => navigate('/pricing')}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 btn-link"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#9A0A94";
@@ -672,8 +909,8 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               }}
             >
               <span>Find your match</span>
-              <img src={heartButtonIcon} alt="heart" className="w-5 h-5" />
-            </button>
+              <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
+            </a>
           </div>
         </div>
       </section>
@@ -691,7 +928,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
       >
         {/* Full Section Overlay Image */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 bg-overlay-img"
           style={{
             backgroundImage: `url(${backImage})`,
             backgroundSize: "50%",
@@ -715,15 +952,15 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
           <h2 className="text-3xl lg:text-4xl mb-8 playfair-display text-center">
             The Story Behind IntroYou
           </h2>
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 story-row">
             {/* Left Content - Circular Image */}
             <div
               className="w-full lg:w-1/2 flex justify-center lg:justify-center  px-6 lg:px-12"
-              // style={{
-              //   backgroundImage: `url(${storyBehindBackground})`,
-              //   backgroundSize: "cover",
-              //   backgroundPosition: "center",
-              // }}
+            // style={{
+            //   backgroundImage: `url(${storyBehindBackground})`,
+            //   backgroundSize: "cover",
+            //   backgroundPosition: "center",
+            // }}
             >
               <div className="relative mt-10">
                 <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden">
@@ -739,6 +976,17 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
             {/* Right Content */}
             <div className="w-full lg:w-1/2 text-center lg:text-left px-6 lg:px-12">
               <div className="space-y-6 text-base lg:text-lg leading-relaxed">
+                {/* Signature */}
+                <div className="mt-12 signature signature-mobile">
+                  <img
+                    src={signatureImage}
+                    alt="Akshay & Harpreet Signature"
+                    className="h-12 lg:h-20 mb-2 object-contain"
+                    width="330"
+                    height="53"
+                  />
+                  <div className="text-sm lg:text-base opacity-90">Founders</div>
+                </div>
                 <p>
                   Our journey began in the most unexpected way. Two strangers
                   competing on a{" "}
@@ -762,10 +1010,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
 
                 <p>
                   We believe everyone deserves the chance to meet someone
-                  meaningful. And we can't wait
+                  meaningful. And we can't wait to IntroYou.
                 </p>
 
-                <p className="font-medium">to IntroYou.</p>
               </div>
 
               {/* Signature */}
@@ -785,7 +1032,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
       </section>
 
       {/* How IntroYou Works Section */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-white intro-different-wrp">
         <div className="max-w-6xl mx-auto w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl mb-4 playfair-display">
@@ -800,9 +1047,9 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-wrap items-center justify-center -mx-[12px]">
               {/* Box 1 - Tell us about yourself */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -836,7 +1083,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               {/* Box 2 - We curate your introductions */}
               <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
                 <div
-                  className="p-6 text-center  h-full"
+                  className="p-6 text-center  h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -871,7 +1118,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               {/* Box 3 - Receive your introductions */}
               <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
                 <div
-                  className="p-6 text-center h-full"
+                  className="p-6 text-center h-full dif-block"
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #EEEEEE",
@@ -907,9 +1154,8 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
 
           {/* CTA Button */}
           <div className="text-center mt-12">
-            <button
-              onClick={onNavigateToPricing}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+            <a href="https://introyou-beta.vercel.app/login"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 w-full btn-link"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#9A0A94";
@@ -919,21 +1165,21 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               }}
             >
               <span>Find your match</span>
-              <img src={heartButtonIcon} alt="heart" className="w-5 h-5" />
-            </button>
+              <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
+            </a>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6" style={{ backgroundColor: "#F2F0F5" }}>
+      <section className="py-20 px-6 faq-wrapper" style={{ backgroundColor: "#F2F0F5" }}>
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 faq-row">
             {/* Left Content - Image */}
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="relative">
+            <div className="w-full lg:w-1/2 flex justify-center faq-left">
+              <div className="relative bg-image">
                 <div
-                  className="w-80 h-96 lg:w-96 lg:h-[480px] rounded-3xl overflow-hidden relative"
+                  className="w-80 h-96 lg:w-96 lg:h-[480px] rounded-3xl overflow-hidden relative bg-image-main"
                   style={{
                     backgroundImage: `url(${coupleImage})`,
                     backgroundSize: "cover",
@@ -943,7 +1189,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                 >
                   {/* Gradient Overlay */}
                   <div
-                    className="absolute inset-0"
+                    className="absolute inset-0 bg-image-main-overlay"
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(23, 29, 41, 0.256) 0%, rgba(23, 29, 41, 0.64) 100%)",
@@ -957,11 +1203,10 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                       Tired of dating apps?
                     </h3>
                     <p className="text-sm mb-6 opacity-90">
-                      That's because they care about is keeping you looking for
-                      a digital "We're not. For the big brands."
+                      That’s because they are built to keep you scrolling & single. We’re not. Let us IntroYou.
                     </p>
-                    <button
-                      className="px-6 py-3 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mx-auto w-full"
+                    <a href="https://introyou-beta.vercel.app/onboarding"
+                      className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mx-auto w-full"
                       style={{ backgroundColor: "#820080" }}
                       onMouseEnter={(e) => {
                         e.target.style.backgroundColor = "#9A0A94";
@@ -971,7 +1216,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                       }}
                     >
                       Tell us who you are looking for
-                    </button>
+                    </a>
                     <p className="text-sm mt-2 opacity-75 text-center">
                       It takes only 3-minutes
                     </p>
@@ -981,8 +1226,8 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
             </div>
 
             {/* Right Content - FAQ */}
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display">
+            <div className="w-full lg:w-1/2 faq-right">
+              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display ">
                 Frequently Asked Questions
               </h2>
 
@@ -1046,13 +1291,13 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
 
       {/* Footer */}
       <footer
-        className="bg-white "
+        className="bg-white footer"
         style={{ borderTop: "1px solid rgba(0, 0, 0, 0.1)" }}
       >
-        <div className="max-w-8xl mx-auto py-12 px-6">
+        <div className="max-w-8xl mx-auto py-12 px-6 footer-main">
           <div className="flex flex-col lg:flex-row">
             {/* Left Content - Logo and Description */}
-            <div className="w-full lg:w-2/12">
+            <div className="w-full lg:w-2/12 footer-top">
               <img src={logoImage} alt="IntroYou" className="h-8 mb-4" />
               <p className="text-gray-600 mb-6">
                 Thoughtful introductions,
@@ -1071,10 +1316,13 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                 paddingRight: "74px",
               }}
             >
+              <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] mobile-heading">
+                Menu
+              </h4>
               <div className="grid grid-cols-2 gap-8">
                 {/* Left Menu Column */}
                 <div>
-                  <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px]">
+                  <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] desktop-heading">
                     Menu
                   </h4>
                   <ul className="space-y-3 text-gray-600">
@@ -1115,7 +1363,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
 
                 {/* Right Menu Column */}
                 <div>
-                  <h4 className="font-medium mb-4 text-transparent playfair-display mb-[38px] text-[22px]">
+                  <h4 className="font-medium mb-4 text-transparent playfair-display mb-[38px] text-[22px] desktop-heading">
                     Menu
                   </h4>
                   <ul className="space-y-3 text-gray-600">
@@ -1157,7 +1405,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
             </div>
 
             {/* Right Content - Know Someone Section and Social Media */}
-            <div className="w-full lg:w-5/12 max-w-[407px] md:ml-[80px]">
+            <div className="w-full lg:w-5/12 max-w-[407px] md:ml-[80px] footer-bottom">
               {/* Know Someone Section */}
               <div
                 className="p-6 mb-6 inline-block w-full"
@@ -1180,7 +1428,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
                       <img
                         src={footerHeartIcon}
                         alt="Heart"
-                        className="w-4 h-4 flex-shrink-0"
+                        className="w-4 h-4 flex-shrink-0 h-icon"
                       />
                     </p>
                   </div>
@@ -1188,7 +1436,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
               </div>
 
               {/* Social Media Icons - Separate and Centered */}
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-4 footer-social">
                 <a
                   href="https://instagram.com"
                   target="_blank"
@@ -1218,7 +1466,7 @@ export function HomePage({ onNavigateToPricing }: HomePageProps) {
 
         {/* Copyright - Full Width */}
         <div
-          className="mt-12 py-[12px] text-center"
+          className="mt-12 py-[12px] text-center footer-copy"
           style={{
             borderTop: "1px solid rgba(0, 0, 0, 0.1)",
             backgroundColor: "#F7F7F7",
