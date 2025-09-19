@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import logoImage from "figma:asset/1317259af126a2231a0e530aedf3b68e2e27ad9e.png";
 import heroBackground from "../assets/banner-video.mov";
@@ -43,8 +43,6 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "../styles/swiper-custom.css";
 import { FreeMode, Autoplay, Pagination } from "swiper/modules";
-
-
 
 interface HomePageProps {}
 
@@ -106,8 +104,6 @@ export function HomePage({}: HomePageProps) {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -155,7 +151,8 @@ export function HomePage({}: HomePageProps) {
               <img
                 src={logoImage}
                 alt="IntroYou"
-                className="h-10 w-auto"
+                //className="h-10 w-auto"
+                 className="h-14 w-auto sm:h-14"
                 width="185"
                 height="48"
               />
@@ -163,7 +160,13 @@ export function HomePage({}: HomePageProps) {
 
             {/* Desktop Menu (hidden on mobile) */}
             <nav className="hidden lg:flex space-x-8 mx-10">
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Home</a>
+              {/* <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Home</a> */}
+              <Link 
+                  to="/" 
+                 className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
+                >
+               Home
+                </Link>
               <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Why IntroYou</a>
               <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">About Us</a>
               <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">How it Works</a>
@@ -175,14 +178,29 @@ export function HomePage({}: HomePageProps) {
               </button>
               <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">FAQ</a>
               <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Contact Us</a>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Terms & Conditions</a>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Privacy Policy</a>
+              {/* <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Terms & Conditions</a>
+              <a  href="/policy" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Privacy Policy</a> */}
+                 <Link 
+                  to="/terms" 
+                 className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
+                >
+                Terms & Conditions
+                </Link>
+
+                <Link 
+                  to="/policy" 
+                  className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
+                >
+                  Privacy Policy
+                </Link>
+
             </nav>
 
             {/* Right: Login button */}
             <div className="flex-1 flex justify-end login-button">
               <a href="https://introyou-beta.vercel.app/login"
-                className="px-[62px] py-[12px] text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+                //className="px-[62px] py-[12px] text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+                 className="px-4 py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
                 style={{ backgroundColor: "#171D29" }}
                 onMouseEnter={(e) => {
                   e.target.style.backgroundColor = "#2A3441";
@@ -304,14 +322,33 @@ export function HomePage({}: HomePageProps) {
                 }}
               >
                 <p className="font-semibold">Menu</p>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Home</a>
+                {/* <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Home</a> */}
+                  <Link 
+                  to="/" 
+                  className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                >
+                  Home
+                </Link>
                 <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Why IntroYou</a>
                 <a href="\pricing" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">About Us</a>
                 <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">How it Works</a>
                 <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">FAQ</a>
                 <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Contact Us</a>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Terms & Conditions</a>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Privacy Policy</a>
+                {/* <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Terms & Conditions</a>
+                <a  href="/policy" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Privacy Policy</a> */}
+              <Link 
+                  to="/terms" 
+                  className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                >
+                  Terms & Conditions
+                </Link>
+
+                <Link 
+                  to="/policy" 
+                  className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                >
+                  Privacy Policy
+                </Link>
               </nav>
             </div>
 
@@ -338,7 +375,6 @@ export function HomePage({}: HomePageProps) {
         </div>
       </header>
 
-
       {/* Hero/Banner Section */}
       <section
         className="text-white py-20 px-6 relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
@@ -364,7 +400,7 @@ export function HomePage({}: HomePageProps) {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-16 banner-btn">
             <a href="https://introyou-beta.vercel.app/onboarding"
-              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
+              className="w-full py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#9A0A94";
@@ -1155,7 +1191,7 @@ export function HomePage({}: HomePageProps) {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <a href="https://introyou-beta.vercel.app/login"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 w-full btn-link"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 btn-link"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#9A0A94";
@@ -1327,12 +1363,19 @@ export function HomePage({}: HomePageProps) {
                   </h4>
                   <ul className="space-y-3 text-gray-600">
                     <li className="mb-5">
-                      <a
-                        href="#"
+                      {/* <a
+                        href="/"
                         className="hover:text-black transition-colors"
                       >
                         Home Page
-                      </a>
+                      </a> */}
+                        <Link 
+                  to="/" 
+                  className="hover:text-black transition-colors"
+                
+                >
+                Home Page
+                </Link>
                     </li>
                     <li className="mb-5">
                       <a
@@ -1384,20 +1427,35 @@ export function HomePage({}: HomePageProps) {
                       </a>
                     </li>
                     <li className="mb-5">
-                      <a
-                        href="#"
+                      {/* <a
+                        href="/terms"
                         className="hover:text-black transition-colors"
                       >
                         Terms & Privacy
-                      </a>
+                      </a> */}
+                                      <Link 
+                  to="/terms" 
+                  className="hover:text-black transition-colors"
+                
+                >
+                Terms & Privacy
+                </Link>
+
                     </li>
                     <li className="mb-5">
-                      <a
-                        href="#"
+                      {/* <a
+                        href="/policy"
                         className="hover:text-black transition-colors"
                       >
                         Safe Dating Policy
-                      </a>
+                      </a> */}
+             
+                <Link 
+                  to="/policy" 
+                 className="hover:text-black transition-colors"
+                >
+                  Safe Dating Policy
+                </Link>
                     </li>
                   </ul>
                 </div>
