@@ -3066,6 +3066,10 @@
     }
   }
 
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
   .focus\:z-10:focus {
     z-index: 10;
   }

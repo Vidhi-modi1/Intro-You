@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import logoImage from "figma:asset/1317259af126a2231a0e530aedf3b68e2e27ad9e.png";
 import heroBackground from "../assets/banner-video.mov";
@@ -37,12 +37,15 @@ import coupleImage from "figma:asset/3de54880b8a6b5ee1f5705a511ff2be04da832a8.pn
 import yahooLogoExtra from "figma:asset/290973993221e5de301713490e3618ef76960344.png";
 import footerHeartIcon from "figma:asset/825ba557c87de8f2b4335468874e5eb17f98f401.png";
 
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "../styles/swiper-custom.css";
 import { FreeMode, Autoplay, Pagination } from "swiper/modules";
+import FooterApp from "./FooterApp";
+import HeaderApp from "./HeaderApp";
 
 interface HomePageProps {}
 
@@ -52,6 +55,7 @@ export function HomePage({}: HomePageProps) {
   const [userGender, setUserGender] = useState("Woman");
   const [lookingFor, setLookingFor] = useState("Man");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+   const location = useLocation();
 
   const faqs = [
     {
@@ -100,6 +104,23 @@ export function HomePage({}: HomePageProps) {
     };
   }, [mobileMenuOpen]);
 
+useEffect(() => {
+  if (location.state?.scrollTo) {
+    const scrollToElement = () => {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        const yOffset = -80; // adjust if you have fixed header
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else {
+        // Retry in next frame if element not found yet
+        requestAnimationFrame(scrollToElement);
+      }
+    };
+    scrollToElement();
+  }
+}, [location.state]);
+
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
@@ -107,274 +128,7 @@ export function HomePage({}: HomePageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center py-[16px] header-main">
-            {/* Left: Hamburger + Socials (Mobile Only for Hamburger) */}
-            <div className="flex flex-wrap items-center flex-1 humburger">
-              {/* Hamburger button - only mobile */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer lg:hidden"
-              >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-
-              {/* Vertical separator (only mobile when hamburger is visible) */}
-              <div className="w-px h-6 bg-gray-300 mx-4 divider lg:hidden"></div>
-
-              {/* Social media icons (always visible) */}
-              <div className="flex items-center space-x-4 social-icons">
-                <a
-                  href="#"
-                  className="p-2 rounded-full hover:bg-purple-50 transition-colors duration-200"
-                >
-                  <img
-                    src={instagramIcon}
-                    alt="Instagram"
-                    className="w-5 h-5"
-                    width="187"
-                    height="48"
-                  />
-                </a>
-                <a
-                  href="#"
-                  className="p-2 rounded-full hover:bg-purple-50 transition-colors duration-200"
-                >
-                  <img src={tiktokIcon} alt="TikTok" className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Center: Logo */}
-            <div className="flex justify-center logo-img">
-              <img
-                src={logoImage}
-                alt="IntroYou"
-                className="h-10 w-auto"
-                 //className="h-14 w-auto sm:h-14"
-                width="185"
-                height="48"
-              />
-            </div>
-
-            {/* Desktop Menu (hidden on mobile) */}
-            <nav className="hidden lg:flex space-x-8 mx-10">
-              {/* <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Home</a> */}
-              <Link 
-                  to="/" 
-                 className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
-                >
-               Home
-                </Link>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Why IntroYou</a>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">About Us</a>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">How it Works</a>
-              <button 
-                onClick={() => navigate('/pricing')} 
-                className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
-              >
-                Pricing
-              </button>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">FAQ</a>
-              <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Contact Us</a>
-              {/* <a href="#" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Terms & Conditions</a>
-              <a  href="/policy" className="text-gray-700 hover:text-[#820080] transition-colors duration-200">Privacy Policy</a> */}
-                 <Link 
-                  to="/terms" 
-                 className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
-                >
-                Terms & Conditions
-                </Link>
-
-                <Link 
-                  to="/policy" 
-                  className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
-                >
-                  Privacy Policy
-                </Link>
-
-            </nav>
-
-            {/* Right: Login button */}
-            <div className="flex-1 flex justify-end login-button">
-              <a href="https://introyou-beta.vercel.app/login"
-                className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
-                 //className="px-4 py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
-
-                style={{ backgroundColor: "#171D29" }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#2A3441";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = "#171D29";
-                }}
-              >
-                Login
-              </a>
-            </div>
-          </div>
-
-          {/* Mobile Menu Overlay with Transitions */}
-          <div
-            className={`
-        fixed inset-0 z-50 bg-white flex flex-col justify-between mobile-menu-main lg:hidden
-        transition-all duration-300 ease-in-out overflow-y-auto
-        ${mobileMenuOpen
-                ? 'opacity-100 visible'
-                : 'opacity-0 invisible'
-              }
-      `}
-            style={{
-              transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
-            }}
-          >
-            {/* Top section */}
-            <div
-              className={`
-          transition-all duration-500 ease-out
-          ${mobileMenuOpen
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 -translate-y-4'
-                }
-        `}
-              style={{
-                transitionDelay: mobileMenuOpen ? '100ms' : '0ms'
-              }}
-            >
-              <div className="flex justify-between items-center px-4 py-4 border-b">
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-                <img src={logoImage} alt="IntroYou" className="h-8" />
-                <div className="w-6"></div>
-              </div>
-
-              {/* Buttons */}
-              <div
-                className={`
-            flex gap-2 px-4 py-4 transition-all duration-500 ease-out menu-btns
-            ${mobileMenuOpen
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 -translate-y-4'
-                  }
-          `}
-                style={{
-                  transitionDelay: mobileMenuOpen ? '200ms' : '0ms'
-                }}
-              >
-                <a
-                  href="/join"
-                  className="flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
-                  style={{ backgroundColor: "#820080" }}
-                >
-                  Join Now ♡
-                </a>
-
-                <a
-                  href="/login"
-                  className="flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
-                  style={{ backgroundColor: "#171D29" }}
-                >
-                  Login
-                </a>
-
-              </div>
-
-              {/* Pricing Button */}
-              <div
-                className={`
-            px-4 py-2 transition-all duration-500 ease-out
-            ${mobileMenuOpen
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 -translate-y-4'
-                  }
-          `}
-                style={{
-                  transitionDelay: mobileMenuOpen ? '250ms' : '0ms'
-                }}
-              >
-                {/* <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    navigate('/pricing');
-                  }}
-                  className="w-full py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
-                  style={{ backgroundColor: "#820080" }}
-                >
-                  View Pricing
-                </button> */}
-              </div>
-
-              {/* Menu Links */}
-              <nav
-                className={`
-            px-4 py-4 space-y-4 transition-all duration-500 ease-out
-            ${mobileMenuOpen
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 -translate-y-4'
-                  }
-          `}
-                style={{
-                  transitionDelay: mobileMenuOpen ? '300ms' : '0ms'
-                }}
-              >
-                <p className="font-semibold">Menu</p>
-                {/* <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Home</a> */}
-                  <Link 
-                  to="/" 
-                  className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
-                >
-                  Home
-                </Link>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Why IntroYou</a>
-                <a href="\pricing" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">About Us</a>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">How it Works</a>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">FAQ</a>
-                <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Contact Us</a>
-                {/* <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Terms & Conditions</a>
-                <a  href="/policy" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Privacy Policy</a> */}
-              <Link 
-                  to="/terms" 
-                  className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
-                >
-                  Terms & Conditions
-                </Link>
-
-                <Link 
-                  to="/policy" 
-                  className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
-                >
-                  Privacy Policy
-                </Link>
-              </nav>
-            </div>
-
-            {/* Footer */}
-            <div
-              className={`
-          text-center text-xs text-gray-500 transition-all duration-500 ease-out header-footer-copy
-          ${mobileMenuOpen
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-4'
-                }
-        `}
-              style={{
-                transitionDelay: mobileMenuOpen ? '400ms' : '0ms'
-              }}
-            >
-              <p>© 2025 IntroYou</p>
-              <p>All Rights Reserved</p>
-              <div className="bottom-header">
-                <a href="#" className="hover:text-[#820080] transition-colors duration-200">introyou.co.uk</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <HeaderApp />
 
       {/* Hero/Banner Section */}
       <section
@@ -626,7 +380,7 @@ export function HomePage({}: HomePageProps) {
       </section>
 
       {/* Introduce You Section */}
-      <section className="py-20 px-6 bg-grey intro-wrp">
+      <section className="py-20 px-6 bg-grey intro-wrp" id="contactUs">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center">
             {/* Left Content - 5/12 */}
@@ -717,7 +471,9 @@ export function HomePage({}: HomePageProps) {
                     </div>
                   </div>
 
-                  <a href="https://introyou-beta.vercel.app/login"
+                  <a 
+                  //href="https://introyou-beta.vercel.app/login"
+                   href="https://introyou-beta.vercel.app/profile/1"
                     onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6 flex items-center justify-center gap-2"
                     style={{ backgroundColor: "#820080" }}
@@ -743,7 +499,7 @@ export function HomePage({}: HomePageProps) {
       </section>
 
       {/* Why IntroYou is Different Section */}
-      <section className="py-20 px-6 bg-white intro-different-wrp">
+      <section className="py-20 px-6 bg-white intro-different-wrp" id="whyIntroYou">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl mb-4 playfair-display">
@@ -962,6 +718,7 @@ export function HomePage({}: HomePageProps) {
           backgroundBlendMode: "normal, overlay",
           clipPath: "polygon(0 88%, 0 0, 100% 0, 100% 88%, 50% 100%)",
         }}
+        id="meetFounders"
       >
         {/* Full Section Overlay Image */}
         <div
@@ -1069,7 +826,7 @@ export function HomePage({}: HomePageProps) {
       </section>
 
       {/* How IntroYou Works Section */}
-      <section className="py-20 px-6 bg-white intro-different-wrp">
+      <section className="py-20 px-6 bg-white intro-different-wrp" id="howItWorks">
         <div className="max-w-6xl mx-auto w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl mb-4 playfair-display">
@@ -1209,7 +966,7 @@ export function HomePage({}: HomePageProps) {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 faq-wrapper" style={{ backgroundColor: "#F2F0F5" }}>
+      <section className="py-20 px-6 faq-wrapper" style={{ backgroundColor: "#F2F0F5" }} id="faq">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 faq-row">
             {/* Left Content - Image */}
@@ -1327,217 +1084,7 @@ export function HomePage({}: HomePageProps) {
       </section>
 
       {/* Footer */}
-      <footer
-        className="bg-white footer"
-        style={{ borderTop: "1px solid rgba(0, 0, 0, 0.1)" }}
-      >
-        <div className="max-w-8xl mx-auto py-12 px-6 footer-main">
-          <div className="flex flex-col lg:flex-row">
-            {/* Left Content - Logo and Description */}
-            <div className="w-full lg:w-2/12 footer-top">
-              <img src={logoImage} alt="IntroYou" className="h-8 mb-4" />
-              <p className="text-gray-600 mb-6">
-                Thoughtful introductions,
-                <br />
-                not endless swiping.
-              </p>
-            </div>
-
-            {/* Menu Sections with Borders */}
-            <div
-              className="w-full lg:w-5/12 footer-menu"
-              style={{
-                borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-                paddingLeft: "74px",
-                paddingRight: "74px",
-              }}
-            >
-              <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] mobile-heading">
-                Menu
-              </h4>
-              <div className="grid grid-cols-2 gap-8">
-                {/* Left Menu Column */}
-                <div>
-                  <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] desktop-heading">
-                    Menu
-                  </h4>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="mb-5">
-                      {/* <a
-                        href="/"
-                        className="hover:text-black transition-colors"
-                      >
-                        Home Page
-                      </a> */}
-                        <Link 
-                  to="/" 
-                  className="hover:text-black transition-colors"
-                
-                >
-                Home Page
-                </Link>
-                    </li>
-                    <li className="mb-5">
-                      <a
-                        href="#"
-                        className="hover:text-black transition-colors"
-                      >
-                        How It Works
-                      </a>
-                    </li>
-                    <li className="mb-5">
-                      <a
-                        href="#"
-                        className="hover:text-black transition-colors"
-                      >
-                        Meet the Founders
-                      </a>
-                    </li>
-                    <li className="mb-5">
-                      <a
-                        href="#"
-                        className="hover:text-black transition-colors"
-                      >
-                        Why IntroYou
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Right Menu Column */}
-                <div>
-                  <h4 className="font-medium mb-4 text-transparent playfair-display mb-[38px] text-[22px] desktop-heading">
-                    Menu
-                  </h4>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="mb-5">
-                      <a
-                        href="#"
-                        className="hover:text-black transition-colors"
-                      >
-                        FAQs
-                      </a>
-                    </li>
-                    <li className="mb-5">
-                      <a
-                        href="#"
-                        className="hover:text-black transition-colors"
-                      >
-                        Contact Us
-                      </a>
-                    </li>
-                    <li className="mb-5">
-                      {/* <a
-                        href="/terms"
-                        className="hover:text-black transition-colors"
-                      >
-                        Terms & Privacy
-                      </a> */}
-                                      <Link 
-                  to="/terms" 
-                  className="hover:text-black transition-colors"
-                
-                >
-                Terms & Privacy
-                </Link>
-
-                    </li>
-                    <li className="mb-5">
-                      {/* <a
-                        href="/policy"
-                        className="hover:text-black transition-colors"
-                      >
-                        Safe Dating Policy
-                      </a> */}
-             
-                <Link 
-                  to="/policy" 
-                 className="hover:text-black transition-colors"
-                >
-                  Safe Dating Policy
-                </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Content - Know Someone Section and Social Media */}
-            <div className="w-full lg:w-5/12 max-w-[407px] md:ml-[80px] footer-bottom">
-              {/* Know Someone Section */}
-              <div
-                className="p-6 mb-6 inline-block w-full"
-                style={{
-                  background: "#F7F7F7",
-                  borderRadius: "167.763px",
-                }}
-              >
-                <div className="flex items-start justify-center gap-3">
-                  <div className="text-center">
-                    <h4 className="font-medium text-black ">
-                      Know someone tired of dating apps?
-                    </h4>
-                    <p className="text-gray-600 text-sm mb-2">
-                      Help them meet someone real
-                    </p>
-                    <p className="text-[#820080] text-sm font-medium flex justify-center gap-1">
-                      Share <span className="font-bold">IntroYou</span> with a
-                      friend{" "}
-                      <img
-                        src={footerHeartIcon}
-                        alt="Heart"
-                        className="w-4 h-4 flex-shrink-0 h-icon"
-                      />
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Media Icons - Separate and Centered */}
-              <div className="flex items-center justify-center gap-4 footer-social">
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                >
-                  <img
-                    src={instagramIcon}
-                    alt="Instagram"
-                    className="w-5 h-5"
-                  />
-                  <span className="text-sm text-gray-600">Instagram</span>
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                >
-                  <img src={tiktokIcon} alt="TikTok" className="w-5 h-5" />
-                  <span className="text-sm text-gray-600">Tik Tok</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Copyright - Full Width */}
-        <div
-          className="mt-12 py-[12px] text-center footer-copy"
-          style={{
-            borderTop: "1px solid rgba(0, 0, 0, 0.1)",
-            backgroundColor: "#F7F7F7",
-          }}
-        >
-          <div className="flex items-center justify-center gap-2">
-            <p className="text-sm font-medium">
-              &copy; 2025 IntroYou. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+                <FooterApp />
     </div>
   );
 }

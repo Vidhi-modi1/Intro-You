@@ -162,7 +162,7 @@ export function PricingPage({ }: PricingPageProps) {
             <img
               src={logoImage}
               alt="IntroYou"
-              className="h-8 w-auto"
+              className="h-8 w-auto cursor-pointer"
             />
           </button>
         </div>
