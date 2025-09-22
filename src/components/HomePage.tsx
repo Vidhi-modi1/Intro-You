@@ -151,8 +151,8 @@ export function HomePage({}: HomePageProps) {
               <img
                 src={logoImage}
                 alt="IntroYou"
-                //className="h-10 w-auto"
-                 className="h-14 w-auto sm:h-14"
+                className="h-10 w-auto"
+                 //className="h-14 w-auto sm:h-14"
                 width="185"
                 height="48"
               />
@@ -199,8 +199,9 @@ export function HomePage({}: HomePageProps) {
             {/* Right: Login button */}
             <div className="flex-1 flex justify-end login-button">
               <a href="https://introyou-beta.vercel.app/login"
-                //className="px-[62px] py-[12px] text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
-                 className="px-4 py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+                className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+                 //className="px-4 py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+
                 style={{ backgroundColor: "#171D29" }}
                 onMouseEnter={(e) => {
                   e.target.style.backgroundColor = "#2A3441";
@@ -400,7 +401,7 @@ export function HomePage({}: HomePageProps) {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-16 banner-btn">
             <a href="https://introyou-beta.vercel.app/onboarding"
-              className="w-full py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
+              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#9A0A94";

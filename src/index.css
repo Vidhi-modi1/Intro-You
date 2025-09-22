@@ -5306,6 +5306,10 @@ button {
   .text-\[44px\] {
     font-size: 30px;}
     .banner-heading {top: 0;}
+
+    .login-button a {
+      padding : 8px 22px;
+    }
     
     .login-button button {
       padding-block: 8px;
@@ -5321,7 +5325,7 @@ button {
     }
 
     .logo-img img {
-      max-width: 120px;
+      max-width: 140px;
     object-fit: contain;
     }
     .banner-main {
@@ -5353,6 +5357,7 @@ button {
 
     .banner-btn a {
       font-size: 14px;
+      width: 100%;
     }
 
     .intro-left {
@@ -5582,8 +5587,6 @@ button {
       }
 }
 
-
-
 .mobile-heading,
 .signature-mobile {
   display: none;
@@ -5621,7 +5624,6 @@ button {
   opacity: 1;
   width: 24px;         /* slightly longer when active */
 }
-
 
 .mobile-slider .swiper {
   padding-bottom: 30px;
