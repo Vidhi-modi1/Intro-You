@@ -95,7 +95,7 @@ const FooterApp = () => {
                                     onClick={() => handleScrollTo("meetFounders")}
                                     className="hover:text-black transition-colors cursor-pointer"
                                 >
-                                    Meet the Founders
+                                    Safe Dating Policy
                                 </span>
                                 
                               </li>

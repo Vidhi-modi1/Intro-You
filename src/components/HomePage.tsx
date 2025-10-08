@@ -125,6 +125,13 @@ useEffect(() => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  const scrollToSpecificElement =(id:any)=>{
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -154,7 +161,7 @@ useEffect(() => {
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-16 banner-btn">
-            <a href="https://introyou-beta.vercel.app/onboarding"
+            <a href="https://introyou-beta.vercel.app/profile"
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
@@ -181,8 +188,9 @@ useEffect(() => {
             </button> */}
 
             <a
-              href="https://introyou-beta.vercel.app/onboarding/second"
-              className="text-white hover:text-purple-300 transition-colors duration-200 text-lg underline underline-offset-4"
+              //href=""
+                onClick={() => scrollToSpecificElement("howItWorks")}
+              className="text-white hover:text-purple-300 transition-colors duration-200 text-lg underline underline-offset-4 cursor-pointer"
             >
               How It Works?
             </a>
@@ -407,10 +415,12 @@ useEffect(() => {
                 </span>
               </h2>
               <p className="text-base lg:text-lg text-gray-600 mb-8 leading-relaxed">
-                Instead of getting lost in endless profiles, we wanted them.
-                Instead, you'll receive curated introductions curated around
-                compatibility and intention, giving you the best chance of
-                meeting someone truly special.
+               IntroYou makes dating simple again. No 
+                swiping, no public profiles, no wasted time. 
+                Instead, you’ll receive private introductions 
+                curated around compatibility and intention, 
+                giving you the best chance of meeting 
+                someone real.
               </p>
             </div>
 
@@ -473,8 +483,8 @@ useEffect(() => {
 
                   <a 
                   //href="https://introyou-beta.vercel.app/login"
-                   href="https://introyou-beta.vercel.app/profile/1"
-                    onClick={() => navigate('/pricing')}
+                   href="https://introyou-beta.vercel.app/profile"
+                    //onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6 flex items-center justify-center gap-2"
                     style={{ backgroundColor: "#820080" }}
                     onMouseEnter={(e) => {
@@ -531,7 +541,7 @@ useEffect(() => {
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
-                        src={heartNewIcon}
+                        src={accessibilityIcon}
                         alt="Curated Introductions"
                         className="w-6 h-6"
                       />
@@ -566,7 +576,7 @@ useEffect(() => {
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
-                        src={accessibilityIcon}
+                        src={heartDifferentIcon}
                         alt="Discreet by Design"
                         className="w-6 h-6"
                       />
@@ -600,7 +610,7 @@ useEffect(() => {
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
-                        src={heartDifferentIcon}
+                        src={heartNewIcon}
                         alt="Designed for Real Connections"
                         className="w-6 h-6"
                       />
@@ -690,7 +700,7 @@ useEffect(() => {
 
           {/* CTA Button */}
           <div className="text-center mt-10 btn-wrp">
-            <a href="https://introyou-beta.vercel.app/login"
+            <a href="https://introyou-beta.vercel.app/profile"
               // onClick={() => navigate('/pricing')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 btn-link"
               style={{ backgroundColor: "#820080" }}
@@ -833,7 +843,7 @@ useEffect(() => {
               How <span style={{ color: "#820080" }}>IntroYou</span> Works?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Modern matchmaking, built for introverts—not algorithms.
+              Personalised, compatible introductions.
             </p>
           </div>
 
@@ -857,7 +867,7 @@ useEffect(() => {
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
-                        src={newHeartIcon}
+                        src={howWorksHeartIcon}
                         alt="Tell us about yourself"
                         className="w-6 h-6"
                       />
@@ -891,7 +901,7 @@ useEffect(() => {
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
-                        src={howWorksHeartIcon}
+                        src={newHeartIcon}
                         alt="We curate your introductions"
                         className="w-6 h-6"
                       />
@@ -948,7 +958,7 @@ useEffect(() => {
 
           {/* CTA Button */}
           <div className="text-center mt-12">
-            <a href="https://introyou-beta.vercel.app/login"
+            <a href="https://introyou-beta.vercel.app/profile"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 btn-link"
               style={{ backgroundColor: "#820080" }}
               onMouseEnter={(e) => {
@@ -999,7 +1009,7 @@ useEffect(() => {
                     <p className="text-sm mb-6 opacity-90">
                       That’s because they are built to keep you scrolling & single. We’re not. Let us IntroYou.
                     </p>
-                    <a href="https://introyou-beta.vercel.app/onboarding"
+                    <a href="https://introyou-beta.vercel.app/profile"
                       className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mx-auto w-full"
                       style={{ backgroundColor: "#820080" }}
                       onMouseEnter={(e) => {
