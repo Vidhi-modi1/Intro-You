@@ -164,6 +164,7 @@ securely and only used for relevant matching purposes based on your preferences.
       5. Services and Membership Plans
     </h2>
     <p className="mb-2">
+    <strong>5.1 Overview of Membership Plans: </strong>
     IntroYou offers multiple membership tiers to 
 cater to different user needs. Currently, we provide a <strong>free Passive Plan</strong> and two 
 premium paid plans known as the <strong>Gold Plan</strong> and <strong>Concierge Plan</strong>. Each plan 
@@ -273,7 +274,7 @@ IntroYou. By using our Service, you agree to follow these rules. Violating any o
 them may result in immediate suspension or termination of your account and 
 removal of any offending content.
     </p>
-    <p>
+    <p className="mb-2">
       <strong>7.1 Lawful and Personal Use Only:</strong> You will use IntroYou <strong>only for personal, non
 commercial purposes</strong> and in a manner consistent with all applicable laws and 
 regulations. You may not use the Service for any unlawful purpose or for promotion 
@@ -283,7 +284,7 @@ intended for matchmaking between individual people for personal relationships;
 any other use (such as business networking, solicitation, or data collection) is 
 prohibited without our explicit written consent.
     </p>
-    <p>
+    <p className="mb-2">
       <strong>7.2 Prohibited Content and Activities: </strong>  You must not post, upload, send, or 
       otherwise make available any Content or engage in any activity on the Service that:
       <ul className="list-disc pl-5 space-y-2 mb-2">
@@ -334,7 +335,7 @@ that negatively affects other users' ability to engage in real time exchanges.</
     </ul>
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong>7.3 Respectful Interaction with Others:</strong> You agree to treat other users with 
 respect and courtesy. Specifically, you will not <strong>harass</strong> or <strong>abuse</strong> other members. If 
 someone tells you they do not wish to communicate further, you must cease 
@@ -344,7 +345,7 @@ using another account or any other means. Any form of persistent harassment,
 stalking, intimidation, or threats towards other users is strictly forbidden.
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong>7.4 No Data Harvesting or Profiling: </strong> You may not collect or harvest any 
 information about other users (including usernames, real names, email addresses, 
 photos, or profile content) for any purpose without their express consent. The use 
@@ -352,7 +353,7 @@ of the Platform's information for any data mining or data gathering, especially 
 commercial or competitive purposes, is prohibited. Likewise, you must not use any 
 information obtained from the Service to harm, abuse, or exploit any person.
     </p>
-    <p>
+    <p className="mb-2">
       <strong> 7.5 Posting and Profile Guidelines: </strong> Any content you add to your profile or post in 
 the Service must adhere to these Terms. This means, for example, <strong>no explicit 
 contact information in profiles</strong>, no copyrighted images or text you don't have 
@@ -364,7 +365,7 @@ However, we do not guarantee that all inappropriate content will be caught or
 removed immediately. Users should report any profiles that violate these rules.
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong>7.6 Reliance on Our Matching: </strong>  Our matches are based on the information you 
 provide and compatibility. While we work to deliver meaningful introductions, we 
 do not guarantee outcomes. You are responsible for deciding whom to connect 
@@ -372,7 +373,7 @@ with and how to engage. Use your own judgment and common sense in all
 interactions..
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong>7.7 Reporting Misconduct: </strong> If you witness or experience any content or behaviour 
 on the Service that violates these Terms or makes you feel unsafe, we encourage 
 you to report it to us. You can report a user or content through the tools provided 
@@ -516,7 +517,7 @@ services.
   {/* -------------------- 11. Disclaimers -------------------- */}
   <section className="mb-6">
     <h2 className="font-semibold text-lg text-[#820080] mb-2">11. Disclaimers</h2>
-    <p>
+    <p className="mb-2">
       <strong>11.1 Service Provided "As Is": </strong> IntroYou is provided on an <strong>"as is" and "as 
 available"</strong> basis to the maximum extent permitted by law. While we strive to 
 provide a high-quality, enjoyable service, <strong>we make no warranty or 
@@ -527,7 +528,9 @@ content obtained through the Service will be accurate or reliable, or (d) any de
 or errors in the Service will be corrected.
     </p>
 
-    <p>
+    
+
+    <p className="mb-2"><strong>11.2 No Warranty of Outcomes: </strong>
       <strong> No Warranty of Outcomes: </strong>  IntroYou <strong>does not guarantee any specific 
       outcomes</strong> from the use of the Service. Matchmaking is a subjective and personal 
 process; compatibility and chemistry between people cannot be assured by any 
@@ -538,7 +541,7 @@ take in reliance on any matches or communications through the Service are
 entirely at your own risk.
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong> 11.3 User Content and Conduct: </strong> IntroYou is a platform designed to facilitate 
 meaningful introductions between users. We take user safety and authenticity 
 seriously — every profile is manually reviewed by our team before being approved. 
@@ -551,7 +554,7 @@ for the accuracy of user-generated content, which does not necessarily reflect o
 views or opinions.
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong> 11.4 No Liability for User Actions:  </strong>You acknowledge that interactions with other 
 users, whether online or in person, are solely at your own risk. IntroYou <strong>is not 
 responsible or liable for the conduct of any user</strong> on or off the Platform. We do 
@@ -566,7 +569,7 @@ you feel comfortable. Never divulge financial information and never send money t
 people you have only met online, no matter how convincing their story may be.
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong>11.5 Community Guidelines and Limitations: </strong>We maintain rules and tools to 
 foster a safe community, but we cannot guarantee that other users will always 
 abide by these rules. Some users may engage in inappropriate behaviour, and you 
@@ -579,7 +582,7 @@ However, nothing in this clause is intended to limit any mandatory rights you ma
 have as a consumer under law.
     </p>
 
-    <p>
+    <p className="mb-2">
       <strong>11.6 Third-Party Services: </strong>Sometimes, IntroYou may integrate or recommend 
 third-party services or content (for example, a payment gateway, identity 
 verification service, external articles, etc.). We do not control those third parties 
@@ -589,7 +592,7 @@ use of any third-party services is subject to their terms of use and privacy pol
 and it's your responsibility to review those before using such services.
 
     </p>
-    <p>
+    <p className="mb-2">
       <strong>11.8 No Implied Warranties: </strong>To the fullest extent allowed by law, we specifically 
 disclaim all warranties of any kind, whether express, implied or statutory, including 
 but not limited to any warranties of merchantability, satisfactory quality, fitness for 
