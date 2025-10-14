@@ -17,7 +17,7 @@ const SafeDating =() =>{
                     
                     {/* Introduction */}
                     <section className="mb-6">
-                    <p className="mt-2">At You, your safety and wellbeing come first.
+                    <p className="mt-2">At IntroYou,, your safety and wellbeing come first.
                     </p>
                     <p className="mt-2">
                     We know that putting yourself out there can feel vulnerable — especially when it comes to 
