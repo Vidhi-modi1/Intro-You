@@ -5868,3 +5868,24 @@ button {
   border-image: linear-gradient(90deg, #820080 0%, #C747C5 100%);
   border-image-slice: 1;
 }
+
+
+/* button */
+
+header .btn-main:hover {
+  color: #fff;
+  background-color: #820080 !important;
+}
+
+.btn-main:hover {
+  color: #820080;
+  background-color: #820080;
+}
+
+.post-content ul li {
+  list-style: disc;
+}
+
+.post-content ul {
+  padding-left: 20px;
+}

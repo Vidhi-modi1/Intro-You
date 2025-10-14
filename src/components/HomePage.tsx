@@ -152,15 +152,15 @@ useEffect(() => {
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">
-          <h1 className="text-5xl md:text-[64px] mb-6 playfair-display leading-tight banner-heading">
+          <h1 className="text-5xl md:text-[64px] mb-2 playfair-display leading-tight banner-heading">
             The Intentional Way To Date
           </h1>
-          <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-3xl mx-auto leading-10 font-normal">
+          <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-2xl mx-auto leading-10 font-normal">
             Thoughtful introductions, designed for people who want something
             real.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-16 banner-btn">
+          <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
             <a href="https://introyou-beta.vercel.app/profile"
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
               style={{ backgroundColor: "#820080" }}
@@ -316,13 +316,14 @@ useEffect(() => {
               slidesPerView={3}
               freeMode={false}
               loop={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
+              // autoplay={{
+              //   delay: 2500,
+              //   disableOnInteraction: false,
+              // }}
               pagination={{
                 clickable: true,
                 dynamicBullets: true,
+                dynamicMainBullets: 3,  
               }}
               className="w-full press-logos-swiper pb-10"
             >

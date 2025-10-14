@@ -148,16 +148,16 @@ const HeaderApp =() =>{
                 {/* Right: Login button */}
                 <div className="flex-1 flex justify-end login-button">
                   <a href="https://introyou-beta.vercel.app/login"
-                    className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+                    className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 btn-main"
                      //className="px-4 py-2 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
     
                     style={{ backgroundColor: "#171D29" }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = "#2A3441";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = "#171D29";
-                    }}
+                    // onMouseEnter={(e) => {
+                    //   e.target.style.backgroundColor = "#2A3441";
+                    // }}
+                    // onMouseLeave={(e) => {
+                    //   e.target.style.backgroundColor = "#171D29";
+                    // }}
                   >
                     Login
                   </a>
