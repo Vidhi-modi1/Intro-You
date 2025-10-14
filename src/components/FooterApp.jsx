@@ -81,24 +81,6 @@ const FooterApp = () => {
                                     How It Works
                                 </span>
                               </li>
-                           
-
-                              <li className="mb-5">
-                                {/* <a
-                                  href="#"
-                                  className="hover:text-black transition-colors"
-                                >
-                                  Meet the Founders
-                                </a> */}
-
-                                 <span
-                                    onClick={() => handleScrollTo("meetFounders")}
-                                    className="hover:text-black transition-colors cursor-pointer"
-                                >
-                                    Safe Dating Policy
-                                </span>
-                                
-                              </li>
                               <li className="mb-5">
                                 {/* <a
                                   href="#"
@@ -113,6 +95,19 @@ const FooterApp = () => {
                                     Why IntroYou
                                 </span>
                               </li>
+                           
+
+                             
+                              <li className="mb-5">
+
+                                  <Link 
+                                  to="/safedatingpolicy" 
+                                  className="hover:text-black transition-colors"
+                                >
+                                  Safe Dating Policy
+                                </Link>
+                              </li>
+                             
                             </ul>
                           </div>
           
@@ -171,6 +166,7 @@ const FooterApp = () => {
                                                   Privacy Policy
                                                 </Link>
                               </li>
+                              
                             </ul>
                           </div>
                         </div>

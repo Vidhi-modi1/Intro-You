@@ -2137,6 +2137,10 @@
     font-size: 48px;
   }
 
+  .lg\:text-\[48px\] {
+    font-size: 48px;
+  }
+
   .text-\[0\.8rem\] {
     font-size: .8rem;
   }
@@ -3100,7 +3104,10 @@
   }
 
   .focus\:ring-purple-500:focus {
-    --tw-ring-color: var(--color-purple-500);
+    --tw-ring-color: var(--color-gray-400);
+    outline: none;
+    box-shadow: none;
+    border: 1px solid oklch(.872 .01 258.338);
   }
 
   .focus\:ring-ring:focus {
@@ -5259,6 +5266,18 @@ html {
   font-size: 44px;
 }
 
+.text-\[18px\] {
+  font-size: 18px;
+}
+
+.lg\:text-\[26px\] {
+  font-size: 26px;
+}
+
+.italic {
+  font-style: italic;
+}
+
 .max-w-8xl {
   max-width: 1318px;
 }
@@ -5275,6 +5294,13 @@ button {
   margin-bottom: 0 !important;
 }
 
+.intro-left {
+  padding-right: 68px;
+}
+.intro-left p {
+  padding-right: 50px;
+}
+
 @media (max-width: 1025px) {
   .signature img {
       margin: 0 auto;
@@ -5283,6 +5309,13 @@ button {
 }
 
 @media (max-width: 767px) {
+  .intro-left p,
+  .intro-left {
+    padding-right: 0;
+  }
+
+  .sub-title span {font-size: 14px;}
+  .sub-title {padding-bottom: 6px;}
 
   .divider,
   .social-icons {

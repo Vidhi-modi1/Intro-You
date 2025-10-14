@@ -330,6 +330,12 @@ const HeaderApp =() =>{
                     >
                       Privacy Policy
                     </Link>
+                    <Link 
+                      to="/safedatingpolicy" 
+                      className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                    >
+                      Safe Dating Policy
+                    </Link>
                   </nav>
                 </div>
     

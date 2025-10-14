@@ -205,7 +205,7 @@ useEffect(() => {
           style={{ maxWidth: "1070px" }}
         >
           <div className="sub-title text-center pb-[16px]">
-            <span className="text-white text-[24px] leading-[30px]">
+            <span className="text-white text-[24px] leading-[30px] font-semibold">
               In the press
             </span>
           </div>
@@ -389,11 +389,11 @@ useEffect(() => {
 
       {/* Introduce You Section */}
       <section className="py-20 px-6 bg-grey intro-wrp" id="contactUs">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center">
             {/* Left Content - 5/12 */}
             <div className="w-full lg:w-5/12 intro-left">
-              <h2 className="text-[44px] mb-[35px] playfair-display leading-tight">
+              <h2 className="text-[48px] mb-[35px] playfair-display leading-tight font-semibold">
                 Done with apps?
                 <br />
                 Try something{" "}
@@ -435,10 +435,10 @@ useEffect(() => {
                   borderRadius: "16px",
                 }}
               >
-                <h3 className="text-lg lg:text-xl playfair-display">
+                <h3 className="text-lg lg:text-[26px] playfair-display font-semibold">
                   Who would you like us to introduce you to?
                 </h3>
-                <p className="text-gray-600 mb-4 lg:mb-6 text-sm">
+                <p className="text-gray-600 mb-4 lg:mb-4 text-[18px]">
                   Select your preference to begin your journey.
                 </p>
 
@@ -446,14 +446,14 @@ useEffect(() => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* I'm a dropdown */}
                     <div>
-                      <label className="block text-sm text-gray-700 mb-2 font-bold">
+                      <label className="block text-sm text-gray-700 mb-2 font-semibold">
                         I'm a
                       </label>
                       <div className="relative">
                         <select
                           value={userGender}
                           onChange={(e) => setUserGender(e.target.value)}
-                          className="w-full py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent italic"
                         >
                           <option value="Woman">Woman</option>
                           <option value="Man">Man</option>
@@ -471,7 +471,7 @@ useEffect(() => {
                         <select
                           value={lookingFor}
                           onChange={(e) => setLookingFor(e.target.value)}
-                          className="w-full py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent italic"
                         >
                           <option value="Woman">Woman</option>
                           <option value="Man">Man</option>
@@ -511,8 +511,8 @@ useEffect(() => {
       {/* Why IntroYou is Different Section */}
       <section className="py-20 px-6 bg-white intro-different-wrp" id="whyIntroYou">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl mb-4 playfair-display">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl lg:text-[48px] playfair-display">
               Why <span style={{ color: "#820080" }}>IntroYou</span> is
               Different?
             </h2>
@@ -547,10 +547,10 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     Curated Introductions. No Swiping.
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 text-base leading-relaxed">
                     Endless swiping is a waste of time. Here, every profile is
                     hand-selected for real compatibility based on what you're
                     looking for. You only see people who actually match your
@@ -582,7 +582,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     Discreet by Design
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -616,7 +616,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     Designed for Real Connections
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -651,7 +651,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     Quality Over Quantity
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -685,7 +685,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     A Premium Community
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
