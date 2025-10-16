@@ -7,6 +7,7 @@ import { PricingPage } from "./components/PricingPage";
 import TermsPage from "./components/TermsPage";
 import PolicyPage from "./components/PolicyPage";
 import SafeDating from "./components/SafeDating";
+import Contact from "./components/Contact";
 
 // Global ScrollToTop component
 function ScrollToTop() {
@@ -40,6 +41,8 @@ export default function App() {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/policy" element={<PolicyPage />} />
         <Route path="/safedatingpolicy" element={<SafeDating />} />
+        <Route path="/contact" element={<Contact />} />
+
       </Routes>
     </Router>
   );

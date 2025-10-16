@@ -308,12 +308,18 @@ const HeaderApp =() =>{
                                 >
                                    FAQ
                                 </span>
-                                <span
+                                {/* <span
                                       onClick={() => handleScrollTo("contactUs")}
                                    className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
                                 >
                                    Contact Us
-                                </span>
+                                </span> */}
+                                 <Link 
+                      to="/contact" 
+                      className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                    > 
+                    Contact Us
+                    </Link>
                     {/* <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Contact Us</a> */}
                     {/* <a href="#" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Terms & Conditions</a>
                     <a  href="/policy" className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1">Privacy Policy</a> */}

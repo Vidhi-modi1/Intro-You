@@ -18,7 +18,7 @@ import checkmarkIcon from "figma:asset/bbfa7dab0f3da1d7dc12afef0fcc570a0c0938ad.
 import heartQualityIcon from "figma:asset/9a01c0ec700bff6c443470f8ae3258406f8e9cb9.png";
 import crownIcon from "figma:asset/ee5659954383da0b2c7868fe55fbafef4aab0e8c.png";
 import storyImage from "figma:asset/820b19f86ad00b340976857c50ff77be15edfd15.png";
-import foundersPhoto from "../assets/4f12ee2c221edd065a303114b625d92e4910a7b8.jpg";
+import foundersPhoto from "../assets/4f12ee2c221edd065a303114b625d92e4910a7b8.png";
 import storyBehindBackground from "figma:asset/bfd7a40e72d57066b21cd625646ed2f44048a20a.png";
 import backImage from "../assets/back-img.png";
 import signatureImage from "figma:asset/13eeee068b52e50b597138d02c16d2f4dec876c9.png";
@@ -162,14 +162,8 @@ useEffect(() => {
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
             <a href="https://introyou-beta.vercel.app/profile"
-              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
+              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main"
               style={{ backgroundColor: "#820080" }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#9A0A94";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#820080";
-              }}
             >
               Let's Find Your Match
             </a>
@@ -205,7 +199,7 @@ useEffect(() => {
           style={{ maxWidth: "1070px" }}
         >
           <div className="sub-title text-center pb-[16px]">
-            <span className="text-white text-[24px] leading-[30px] font-semibold">
+            <span className="text-white text-[14px] leading-[30px] font-semibold">
               In the press
             </span>
           </div>
@@ -486,14 +480,8 @@ useEffect(() => {
                   //href="https://introyou-beta.vercel.app/login"
                    href="https://introyou-beta.vercel.app/profile"
                     //onClick={() => navigate('/pricing')}
-                    className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6 flex items-center justify-center gap-2"
+                    className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 mt-6 flex items-center justify-center gap-2 btn-main"
                     style={{ backgroundColor: "#820080" }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = "#9A0A94";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = "#820080";
-                    }}
                   >
                     <span>Let Us Introduce You</span>
                     <img
@@ -511,9 +499,9 @@ useEffect(() => {
 
       {/* Why IntroYou is Different Section */}
       <section className="py-20 px-6 bg-white intro-different-wrp" id="whyIntroYou">
-        <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl lg:text-[48px] playfair-display">
+            <h2 className="text-3xl lg:text-[48px] playfair-display font-semibold">
               Why <span style={{ color: "#820080" }}>IntroYou</span> is
               Different?
             </h2>
@@ -538,7 +526,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -552,10 +540,7 @@ useEffect(() => {
                     Curated Introductions. No Swiping.
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    Endless swiping is a waste of time. Here, every profile is
-                    hand-selected for real compatibility based on what you're
-                    looking for. You only see people who actually match your
-                    standards.
+                  Endless swiping is a waste of time. Here, every profile is hand-selected for real compatibility based on what you’re looking for. You only see people who actually matter.
                   </p>
                 </div>
               </div>
@@ -573,7 +558,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -587,9 +572,8 @@ useEffect(() => {
                     Discreet by Design
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Your profile isn't public and can't be searched.
-                    Introductions are private and intentional, shared only when
-                    there's genuine alignment with your preferences.
+                  Your profile isn’t public and can’t be searched. Introductions are private and intentional, shared
+                  only when there’s genuine alignment with your preferences.
                   </p>
                 </div>
               </div>
@@ -607,7 +591,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -621,10 +605,7 @@ useEffect(() => {
                     Designed for Real Connections
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    We can't promise love at first sight, but every feature is
-                    built to give you the best chance of finding it. Meaningful
-                    introductions, genuine people, & a process designed to help
-                    something real begin.
+                  We can't promise love at first sight, but every feature is built to give you the best chance of finding it. Meaningful introductions, genuine people, and a process designed to help something real begin.
                   </p>
                 </div>
               </div>
@@ -642,7 +623,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -656,9 +637,7 @@ useEffect(() => {
                     Quality Over Quantity
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    No bots. No spam. No time-wasters. Every person is vetted by
-                    us, so you only meet like-minded singles who match your
-                    standards.
+                  No bot. No spam. No time-wasters. Every people is vetted by u, so you only meet like-minded singles who match your standards.
                   </p>
                 </div>
               </div>
@@ -676,7 +655,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -690,9 +669,7 @@ useEffect(() => {
                     A Premium Community
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Most apps are crowded with people looking for flings.
-                    IntroYou is different. It's a trusted space of singles who
-                    want real connections. If you're here, you're already ahead.
+                  Most apps are crowded with people looking for flings. IntroYou is different. It's a trusted space of singles who want real connections. If you're here, you're already ahead.
                   </p>
                 </div>
               </div>
@@ -703,14 +680,8 @@ useEffect(() => {
           <div className="text-center mt-10 btn-wrp">
             <a href="https://introyou-beta.vercel.app/profile"
               // onClick={() => navigate('/pricing')}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 btn-link"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#9A0A94";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#820080";
-              }}
             >
               <span>Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
@@ -736,11 +707,11 @@ useEffect(() => {
           className="absolute inset-0 bg-overlay-img"
           style={{
             backgroundImage: `url(${backImage})`,
-            backgroundSize: "50%",
-            backgroundPosition: "left",
+            backgroundSize: "cover",
+            backgroundPosition: "top center",
             mixBlendMode: "multiply",
             backgroundRepeat: "no-repeat",
-            zIndex: 1,
+            zIndex: 3,
           }}
         ></div>
 
@@ -754,13 +725,13 @@ useEffect(() => {
         ></div>
 
         <div className="mx-auto relative z-10" style={{ zIndex: 3 }}>
-          <h2 className="text-3xl lg:text-4xl mb-8 playfair-display text-center">
-            The Story Behind IntroYou
+          <h2 className="lg:text-[48px] mb-8 playfair-display text-center font-medium">
+            The Story Behind <span className="font-semibold">IntroYou</span>
           </h2>
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 story-row">
             {/* Left Content - Circular Image */}
             <div
-              className="w-full lg:w-1/2 flex justify-center lg:justify-center  px-6 lg:px-12"
+              className="w-full lg:w-1/2 flex justify-center lg:justify-end  px-6 lg:px-12 story-inner"
             // style={{
             //   backgroundImage: `url(${storyBehindBackground})`,
             //   backgroundSize: "cover",
@@ -768,7 +739,7 @@ useEffect(() => {
             // }}
             >
               <div className="relative mt-10">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden story-image">
                   <img
                     src={foundersPhoto}
                     alt="Akshay & Harpreet - Founders of IntroYou"
@@ -779,7 +750,7 @@ useEffect(() => {
             </div>
 
             {/* Right Content */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left px-6 lg:px-12">
+            <div className="w-full lg:w-1/2 text-center lg:text-left px-6 lg:px-12 story-content">
               <div className="space-y-6 text-base lg:text-lg leading-relaxed">
                 {/* Signature */}
                 <div className="mt-12 signature signature-mobile">
@@ -813,7 +784,7 @@ useEffect(() => {
                   fashioned matchmaking.
                 </p>
 
-                <p>
+                <p className="font-medium">
                   We believe everyone deserves the chance to meet someone
                   meaningful. And we can't wait to IntroYou.
                 </p>
@@ -825,7 +796,7 @@ useEffect(() => {
                 <img
                   src={signatureImage}
                   alt="Akshay & Harpreet Signature"
-                  className="h-12 lg:h-20 mb-2 object-contain"
+                  className="h-12 lg:h-20 object-contain"
                   width="330"
                   height="53"
                 />
@@ -838,19 +809,17 @@ useEffect(() => {
 
       {/* How IntroYou Works Section */}
       <section className="py-20 px-6 bg-white intro-different-wrp" id="howItWorks">
-        <div className="max-w-6xl mx-auto w-full">
+        <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl mb-4 playfair-display">
+            <h2 className="text-3xl lg:text-[48px] mb-4 playfair-display">
               How <span style={{ color: "#820080" }}>IntroYou</span> Works?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Personalised, compatible introductions.
+            Modern matchmaking, built for intention—not algorithms.
             </p>
           </div>
 
-          {/* Flex Layout - All boxes same size */}
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-wrap items-center justify-center -mx-[12px]">
+            <div className="flex flex-wrap justify-center -mx-[12px]">
               {/* Box 1 - Tell us about yourself */}
               <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp">
                 <div
@@ -864,7 +833,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -874,7 +843,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     Tell us about yourself
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -898,7 +867,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -908,7 +877,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     We curate your introductions
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -933,7 +902,7 @@ useEffect(() => {
                 >
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="icon-box rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#FFEBFF" }}
                     >
                       <img
@@ -943,7 +912,7 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-3 playfair-display">
+                  <h3 className="text-lg mb-2 font-bold">
                     Receive your introductions
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -955,21 +924,14 @@ useEffect(() => {
                 </div>
               </div>
             </div>
-          </div>
 
           {/* CTA Button */}
           <div className="text-center mt-12">
             <a href="https://introyou-beta.vercel.app/profile"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 btn-link"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#9A0A94";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#820080";
-              }}
             >
-              <span>Find your match</span>
+              <span  style={{ backgroundColor: "transparent" }}>Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>
@@ -977,14 +939,14 @@ useEffect(() => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 faq-wrapper" style={{ backgroundColor: "#F2F0F5" }} id="faq">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 faq-row">
+      <section className="faq-wrapper" style={{ backgroundColor: "#F2F0F5" }} id="faq">
+        <div className="container">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 faq-row justify-center">
             {/* Left Content - Image */}
             <div className="w-full lg:w-1/2 flex justify-center faq-left">
               <div className="relative bg-image">
                 <div
-                  className="w-80 h-96 lg:w-96 lg:h-[480px] rounded-3xl overflow-hidden relative bg-image-main"
+                  className="lg:h-[480px] rounded-3xl overflow-hidden relative bg-image-main"
                   style={{
                     backgroundImage: `url(${coupleImage})`,
                     backgroundSize: "cover",
@@ -1003,26 +965,20 @@ useEffect(() => {
                   ></div>
 
                   {/* Content Overlay */}
-                  <div className="absolute bottom-8 left-6 right-6 text-white">
-                    <h3 className="text-3xl lg:text-3xl mb-2 playfair-display">
+                  <div className="absolute bottom-8 text-white bottom-tell-us-block">
+                    <h3 className="text-3xl lg:text-4xl mb-2 playfair-display font-semibold">
                       Tired of dating apps?
                     </h3>
-                    <p className="text-sm mb-6 opacity-90">
+                    <p className="text-[18px] mb-6 opacity-90">
                       That’s because they are built to keep you scrolling & single. We’re not. Let us IntroYou.
                     </p>
                     <a href="https://introyou-beta.vercel.app/profile"
-                      className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 mx-auto w-full"
+                      className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 mx-auto w-full btn-main"
                       style={{ backgroundColor: "#820080" }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#9A0A94";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "#820080";
-                      }}
                     >
                       Tell us who you are looking for
                     </a>
-                    <p className="text-sm mt-2 opacity-75 text-center">
+                    <p className="text-sm mt-2 opacity-75 text-center grey-text">
                       It takes only 3-minutes
                     </p>
                   </div>
@@ -1032,7 +988,7 @@ useEffect(() => {
 
             {/* Right Content - FAQ */}
             <div className="w-full lg:w-1/2 faq-right">
-              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display ">
+              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display font-semibold">
                 Frequently Asked Questions
               </h2>
 
@@ -1041,53 +997,51 @@ useEffect(() => {
                 style={{ background: "#FFFFFF", borderRadius: "8px" }}
               >
                 {faqs.map((faq, index) => (
-                  <div key={index} className="overflow-hidden mb-0">
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className="w-full text-left p-4 flex justify-between items-center transition-all duration-300 ease-in-out"
-                      style={{
-                        // background:
-                        //   openFaq === index
-                        //     ? "#F7F7F7"
-                        //     : "#FFFFFF",
-                        borderWidth: "1px 1px 0px 1px",
-                        borderStyle: "solid",
-                        borderColor: "#F7F7F7",
-                        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.12)",
-                      }}
-                    >
-                      <span className="font-medium text-left pr-4">
-                        {faq.question}
-                      </span>
-                      {openFaq === index ? (
-                        <ChevronUp
-                          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
-                          style={{ color: "#C747C5" }}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
-                          style={{ color: "#C747C5" }}
-                        />
-                      )}
-                    </button>
-                    {openFaq === index && (
-                      <div
-                        className="p-4 pt-2 text-sm leading-relaxed transition-all duration-300 ease-in-out"
-                        style={{
-                          background: openFaq === index ? "#F7F7F7" : "#FFFFFF", // Change color here
-                          color: "#4B4B4B", // optional: change text color if needed
-                          borderWidth: "0px 1px 1px 1px",
-                          borderStyle: "solid",
-                          borderColor: "#F7F7F7",
-                          borderRadius: "0px 0px 8px 8px",
-                        }}
-                      >
-                        {faq.answer}
-                      </div>
-                    )}
-                  </div>
-                ))}
+  <div
+    key={index}
+    className={`overflow-hidden mb-0 ${openFaq === index ? "faq-active" : ""}`}
+  >
+    <button
+      onClick={() => toggleFaq(index)}
+      className="w-full text-left p-4 flex justify-between items-center transition-all duration-300 ease-in-out"
+      style={{
+        borderWidth: "1px 1px 0px 1px",
+        borderStyle: "solid",
+        borderColor: "#F7F7F7",
+        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.12)",
+      }}
+    >
+      <span className="font-normal text-left pr-4">{faq.question}</span>
+      {openFaq === index ? (
+        <ChevronUp
+          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
+          style={{ color: "#C747C5" }}
+        />
+      ) : (
+        <ChevronDown
+          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
+          style={{ color: "#C747C5" }}
+        />
+      )}
+    </button>
+
+    {openFaq === index && (
+      <div
+        className="p-4 pt-2 text-sm leading-relaxed transition-all duration-300 ease-in-out faq-detail"
+        style={{
+          background: "#F7F7F7",
+          color: "#4B4B4B",
+          borderWidth: "0px 1px 1px 1px",
+          borderStyle: "solid",
+          borderColor: "#F7F7F7",
+        }}
+      >
+        <p>{faq.answer}</p>
+      </div>
+    )}
+  </div>
+))}
+
               </div>
             </div>
           </div>
