@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "../styles/swiper-custom.css";
-import { FreeMode, Autoplay, Pagination } from "swiper/modules";
 
 import FooterApp from "./FooterApp";
 import HeaderApp from "./HeaderApp";
@@ -81,7 +79,14 @@ export default function Contact() {
       {/* Contact Section */}
       <section className="flex-grow flex justify-center items-center py-16 px-4 bg-gray-50">
         <div className="contact-container max-w-4xl w-full bg-white shadow-lg rounded-2xl p-6">
-          <h2 className="text-3xl font-semibold text-gray-800 text-center mb-4">
+          <div className="close-btn">
+          <a href="/"
+              className=""
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 329.26933 329" width="16"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+            </a>
+          </div>
+          <h2 className="text-3xl font-semibold text-gray-800 text-center mb-4 main-title">
             Get In Touch
           </h2>
           <p className="text-center text-gray-600 mb-8">

@@ -1,28 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
 import {
   Check,
   ChevronDown,
   ChevronUp,
-  Heart,
-  Users,
-  UserCheck,
 } from "lucide-react";
 import logoImage from "figma:asset/1317259af126a2231a0e530aedf3b68e2e27ad9e.png";
 import heroBackground from "figma:asset/a24e647a1bac8b175f483ad9895f554b95277f68.png";
-import profileIcon from "figma:asset/27492c6e724222628b804e461cfac75033e6ac8e.png";
-import heartIcon from "figma:asset/8915fbafd245a5980de87c2e8fb926af94a7bb65.png";
-import messageIcon from "figma:asset/9b3a6b4c7f03aa957ec22f59df76c4d020d92a37.png";
 import heartButtonIcon from "figma:asset/3b78bb2c9df6774abaf1349c5427ba87c276ded9.png";
-
+import howWorksHeartIcon from "figma:asset/061a76defe5a622732879b36b3de1f4032a6ad5b.png";
+import howWorksMessageIcon from "figma:asset/9b3a6b4c7f03aa957ec22f59df76c4d020d92a37.png";
+import newHeartIcon from "figma:asset/6a1b654a7eeca9a8d7baeba8bd31a76f96a7d0b2.png";
 
 interface PricingPageProps { }
 
@@ -37,21 +31,24 @@ export function PricingPage({ }: PricingPageProps) {
       subtitle:
         "Your profile will be visible, but you won't be actively introduced.",
       price: "Free",
+      price1: "Free",
       period: "",
       features: [
         "Limited introductions & Passive matching only",
         "Get notified when someone requests to be introduced to you",
         "Accept or pass on intros easily & message directly",
       ],
-      buttonText: "Continue for free",
+      buttonText: "Continue for Free",
       popular: false,
+      note: "Our Basic Access is free. You’ll receive limited matches and we’ll notify you if a suitable introduction becomes available.",
     },
     {
       title: "Complete Member",
       subtitle:
         "Unlock the IntroYou experience with curated introductions made just for you",
-      price: "£49",
-      period: "/mo",
+      price: "£199.00",
+      price1: "£199",
+      period: "6 Months plan",
       features: [
         "Handpicked introductions based on compatibility",
         "Priority matchmaking from team",
@@ -59,15 +56,17 @@ export function PricingPage({ }: PricingPageProps) {
         "Accept or pass on intros easily",
         "Private, secure messaging",
       ],
-      buttonText: "Get My Match",
+      buttonText: "Get Started",
       popular: true,
+      note: "This is a one-time payment only which gives you six months of personalised, hand-curated introductions.",
     },
     {
       title: "Concierge Service",
       subtitle:
         "A bespoke matchmaking experience with your own dedicated matchmaker",
-      price: "£199",
-      period: "/mo",
+      price: "£499.00",
+      price1: "£499",
+      period: "6 Months plan",
       features: [
         "1:1 Consultation Call",
         "Expert profile refinement",
@@ -77,29 +76,9 @@ export function PricingPage({ }: PricingPageProps) {
         "Private, secure messaging",
         "Friendly refund policy if there is no fit after the call",
       ],
-      buttonText: "Schedule a Call",
+      buttonText: "Get Started",
       popular: false,
-    },
-  ];
-
-  const howItWorks = [
-    {
-      icon: profileIcon,
-      title: "Tell us about yourself",
-      description:
-        "Take a few minutes to share who you are, your values & what you're looking for. We ask the right questions to understand your goals and what really matters to you.",
-    },
-    {
-      icon: heartIcon,
-      title: "We curate your introductions",
-      description:
-        "Our team personally reviews every profile and selects the best matches. We're selective - we choose only reflecting your interests. Before & goals, so you're only shown people you genuinely fit.",
-    },
-    {
-      icon: messageIcon,
-      title: "Receive your introductions",
-      description:
-        "When there's a strong match, we send you their profile at lunch time to when your heart's a beating. Just wait meaningful introductions that actually lead somewhere.",
+      note: "This is a one-time payment only which gives you six months of personalised, hand-curated introductions.",
     },
   ];
 
@@ -142,22 +121,24 @@ export function PricingPage({ }: PricingPageProps) {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+
+
   const toggleCard = (index: number) => {
-
-    setExpandedCard(expandedCard === index ? null : index);
-
+    if (expandedCard !== index) {
+      setExpandedCard(index);
+    }
   };
-
-
-
+  
+  
+  
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white ctm-body-main">
       {/* Header */}
       <header className="flex justify-center py-4 px-6">
         <div className="flex items-center gap-2">
           <button
             onClick={() => navigate('/')}
-            className="hover:opacity-80 transition-opacity duration-200"
+            className="hover:opacity-80 transition-opacity duration-200 logo-inner"
           >
             <img
               src={logoImage}
@@ -170,59 +151,58 @@ export function PricingPage({ }: PricingPageProps) {
 
       {/* Hero Section */}
       <section
-        className="text-white py-16 pb-[190px] px-6 relative bg-cover bg-top bg-no-repeat"
+        className="text-white py-16 pb-[190px] px-6 relative bg-cover bg-top bg-no-repeat price-banner"
         style={{ backgroundImage: `url(${heroBackground})` }}
       >
         <div className="absolute inset-0 bg-black/70"></div>
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl mb-4">Hi, Raphael!</h1>
-          <p className="text-lg mb-2">
+        <div className="max-w-6xl mx-auto text-center relative z-10 letter-06 price-detail">
+          <h1 className="text-[48px] mb-4 font-semibold">Hi Raphael,</h1>
+          {/* <p className="text-lg mb-2">
             Thanks for sharing your story with us!
-          </p>
+          </p> */}
           <p className="mb-8">
             We've loved getting to know you and we're excited to
             start making meaningful introductions curated just
             for you.
           </p>
           <p>
-            To begin your journey, simply choose the IntroYou
+            To begin your journey, simply choose the <span className="font-bold">IntroYou </span>
             membership that feels right for you:
           </p>
         </div>
       </section>
 
       {/* Membership Cards */}
+
+      {/* Membership Cards */}
       <section className="relative -mt-32 px-6 z-20 md:pb-[100px] pb-20 price-main">
+        {/* Desktop Layout */}
         <div className="hidden md:grid md:grid-cols-[1fr_1.13fr_1fr] items-center max-w-5xl mx-auto md:gap-0 gap-5">
           {membershipTiers.map((tier, index) => (
-            <div key={index} className="relative">
+            <div key={index}
+             className="relative">
               <Card
-                className={`relative bg-white gap-0 text-gray-900 shadow-lg w-full justify-between ${tier.popular
-                    ? "border-2 border-[#C747C5] min-h-[547px]"
-                    : "border-none min-h-[485px]"
+                className={`relative bg-white gap-0 text-gray-900 shadow-lg w-full justify-between ${tier.popular ? "border-2 border-[#C747C5] min-h-[547px]" : "border-none min-h-[485px]"
                   }`}
               >
                 {/* Badge for each card */}
                 {index === 0 && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-sm font-semibold z-10"
+                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-base font-semibold z-10 letter-04 font-raleway"
                     style={{
-                      background:
-                        "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
+                      background: "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
                       opacity: 0.6,
-                      borderRadius:
-                        "8.33599px 8.33599px 0px 0px",
+                      borderRadius: "8.33599px 8.33599px 0px 0px",
                     }}
                   >
-                    Join Free
+                    Basic Access
                   </div>
                 )}
                 {tier.popular && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-10 flex items-center justify-center text-white font-semibold z-10"
+                    className="absolute top-0 left-0 right-0 h-10 flex items-center justify-center text-white font-semibold z-10 letter-04 text-xl"
                     style={{
-                      background:
-                        "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
+                      background: "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
                       borderRadius: "12px 12px 0px 0px",
                     }}
                   >
@@ -231,93 +211,79 @@ export function PricingPage({ }: PricingPageProps) {
                 )}
                 {index === 2 && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-sm font-semibold bg-black z-10"
+                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-base font-semibold bg-black z-10"
                     style={{
-                      borderRadius:
-                        "8.33599px 8.33599px 0px 0px",
+                      borderRadius: "8.33599px 8.33599px 0px 0px",
                     }}
                   >
-                    Beespoke
+                    Bespoke
                   </div>
                 )}
 
                 <CardHeader
-                  className={`text-center ${index === 0 ? "pt-10 pb-4" : tier.popular ? "pt-12 pb-4" : "pt-10 pb-4"}`}
+                  className={`text-center ${index === 0 ? "pt-10 pb-4" : tier.popular ? "pt-12 pb-4" : "pt-10 pb-4"
+                    }`}
                 >
-                  <CardTitle className="text-lg mb-2 playfair-display">
+                  <CardTitle className="text-xl mb-2 playfair-display card-title">
                     {tier.title}
                   </CardTitle>
-                  <p className="text-base text-gray-600 leading-relaxed">
+                  <p className="text-sm text-707070 letter-36 leading-relaxed letter-36 card-detail">
                     {tier.subtitle}
                   </p>
                   <ul className="space-y-3 mb-6 text-left min-h-[218px]">
-                    {tier.features.map(
-                      (feature, featureIndex) => (
-                        <li
-                          key={featureIndex}
-                          className={`flex items-start gap-2 ${tier.popular ? "text-base" : "text-sm"}`}
-                        >
-                          <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span
-                            className={`${tier.popular ? "text-base" : "text-sm"} leading-[17px]`}
-                          >
-                            {feature}
-                          </span>
-                        </li>
-                      ),
-                    )}
+                    {tier.features.map((feature, featureIndex) => (
+                      <li
+                        key={featureIndex}
+                        className={`flex items-start gap-2 ${tier.popular ? "text-base" : "text-sm"}`}
+                      >
+                        <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className={`${tier.popular ? "text-base" : "text-sm"} leading-[17px]`}>
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
                   </ul>
                 </CardHeader>
                 <CardContent className="px-6 pb-6 flex flex-col justify-between h-full">
                   <div className="space-y-2">
                     {tier.popular ? (
                       <button
-                        className="w-full text-white py-3 px-4 font-medium flex items-center justify-between"
+                        className="w-full text-white py-4 px-6 font-normal flex items-center justify-between"
                         style={{
-                          background:
-                            "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
+                          background: "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
                           borderRadius: "12px",
                         }}
                       >
                         <span>{tier.buttonText}!</span>
-                        <span className="font-bold">
+                        <span className="font-bold card-month">
                           {tier.price}
-                          {tier.period && (
-                            <span className="text-sm font-normal">
-                              {tier.period}
-                            </span>
-                          )}
+
+                          {/* {tier.period && <span className="text-sm font-normal">{tier.period}</span>} */}
                         </span>
                       </button>
                     ) : index === 0 ? (
                       <button
-                        className="w-full py-3 px-4 bg-gray-800 text-white hover:bg-gray-900 font-medium flex items-center justify-between"
+                        className="w-full py-4 px-6 bg-gray-800 text-white hover:bg-gray-900 font-medium flex items-center justify-between"
                         style={{ borderRadius: "12px" }}
                       >
-                        <span>Continue for free</span>
-                        <span className="font-bold">
-                          {tier.price}
-                        </span>
+                        <span className="text-sm">Continue for Free</span>
+                        <span className="font-bold text-sm">{tier.price}</span>
                       </button>
                     ) : (
                       <button
-                        className="w-full py-3 px-4 bg-gray-800 text-white hover:bg-gray-900 font-medium flex items-center justify-between"
+                        className="w-full py-4 px-6 bg-gray-800 text-white hover:bg-gray-900 font-medium flex items-center justify-between"
                         style={{ borderRadius: "12px" }}
                       >
-                        <span>{tier.buttonText}</span>
-                        <span className="font-bold">
+                        <span className="text-sm">{tier.buttonText}</span>
+                        <span className="font-bold text-sm card-month">
                           {tier.price}
-                          {tier.period && (
-                            <span className="text-sm font-normal">
-                              {tier.period}
-                            </span>
-                          )}
+                          {/* {tier.period && <span className="text-sm font-normal">{tier.period}</span>} */}
                         </span>
                       </button>
                     )}
-                    <p className="text-xs text-gray-500 text-center">
-                      Our membership can be cancelled at any
-                      time on our website.
+                    {/* ✅ Dynamic Note Text */}
+                    <p className="text-xs text-gray-500 text-center bottom-small-detail">
+                      {tier.note}
                     </p>
                   </div>
                 </CardContent>
@@ -326,21 +292,33 @@ export function PricingPage({ }: PricingPageProps) {
           ))}
         </div>
 
-
-
-        {/* Mobile Layout */}
+        {/* ✅ Mobile Layout */}
         <div className="md:hidden max-w-lg mx-auto">
-          {/* Header Row - All Cards in Collapsed State */}
-          <div className="flex mb-4">
+          <div className="flex mb-4 items-center">
             {membershipTiers.map((tier, index) => (
+              // <button
+              //   key={index}
+              //   onClick={() => toggleCard(expandedCard === index ? null : index)}
+              //   className={`price-block ${expandedCard === index ? "active active-block" : ""}`}
+              // >
+              // <button
+              //   key={index}
+              //   onClick={() => toggleCard(index)}
+              //   className={`price-block ${expandedCard === index ? "active active-block" : ""}`}
+              // >
               <button
-                key={index}
-                onClick={() =>
-                  toggleCard(expandedCard === index ? null : index)
-                }
-                className={`price-block ${expandedCard === index ? "active" : ""}`}
-              >
-                {/* Badge */}
+                  key={index}
+                  onClick={() => toggleCard(index)}
+                  className={`price-block ${
+                    expandedCard === index ? "active active-block" : ""
+                  } ${
+                    index === 0
+                      ? "price-basic"
+                      : tier.popular
+                        ? "price-popular"
+                        : "price-bespoke"
+                  }`}
+                >
                 <div
                   className="price-badge"
                   style={{
@@ -353,91 +331,67 @@ export function PricingPage({ }: PricingPageProps) {
                     opacity: index === 0 ? 0.6 : 1,
                   }}
                 >
-                  {index === 0
-                    ? "Join Free"
-                    : tier.popular
-                      ? "Most Popular"
-                      : "Bespoke"}
+                  {index === 0 ? "Basic Access" : tier.popular ? "Most Popular" : "Bespoke"}
                 </div>
 
-                {/* Content */}
                 <div className="price-content">
                   <h3 className="price-title">{tier.title}</h3>
                   <div className={`price-value ${expandedCard === index ? "active" : ""}`}>
-  {tier.price}
-  <span className="price-period">{tier.period || ""}</span>
-</div>
-
+                    {tier.price1}
+                    <span className="price-period">{tier.period || ""}</span>
+                  </div>
                 </div>
               </button>
             ))}
-
           </div>
 
           {/* Expanded Card Details */}
           {expandedCard !== null && (
             <div
-              className="bg-white overflow-hidden mb-4"
+              className="bg-white overflow-hidden mb-4 price-top-block"
               style={{
                 border: "1px solid #EAEAEA",
                 boxShadow: "0px 32px 26px -15px rgba(41, 31, 6, 0.12)",
                 borderRadius: "16px",
               }}
             >
-              {/* Special header for Most Popular */}
+              {/* Special headers */}
               {membershipTiers[expandedCard].popular && (
                 <div
-                  className="text-white p-4 text-center"
+                  className="text-white p-4 text-center detail-main-price"
                   style={{
-                    background:
-                      "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
+                    background: "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
                     borderRadius: "16px 16px 0px 0px",
                   }}
                 >
-                  <h3 className="font-bold text-lg playfair-display">
-                    Most Popular
-                  </h3>
+                  <h3 className="font-bold text-lg playfair-display">Most Popular</h3>
                 </div>
               )}
 
-              {/* Special header for Bespoke */}
               {expandedCard === 2 && (
-                <div
-                  className="text-white p-4 text-center"
-                  style={{
-                    background: "#171D29",
-                  }}
-                >
-                  <h3 className="font-bold text-lg playfair-display">
-                    Bespoke
-                  </h3>
+                <div className="text-white p-4 text-center detail-main-price" style={{ background: "#171D29" }}>
+                  <h3 className="font-bold text-lg playfair-display">Bespoke</h3>
                 </div>
               )}
 
-              <div className="p-6">
+              <div className="p-6 price-inner-main">
                 <h3 className="text-xl font-bold playfair-display mb-2">
                   {membershipTiers[expandedCard].title}
                 </h3>
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+
+                <p className="text-sm text-gray-600 mb-4 leading-relaxed price-detail-span">
                   {membershipTiers[expandedCard].subtitle}
                 </p>
 
-                {/* Features */}
                 <ul className="space-y-3 mb-6">
-                  {membershipTiers[expandedCard].features.map(
-                    (feature, featureIndex) => (
-                      <li
-                        key={featureIndex}
-                        className="flex items-start gap-3 text-sm"
-                      >
-                        <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="leading-relaxed">{feature}</span>
-                      </li>
-                    )
-                  )}
+                  {membershipTiers[expandedCard].features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-3 text-sm">
+                      <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span className="leading-relaxed">{feature}</span>
+                    </li>
+                  ))}
                 </ul>
 
-                {/* Action Button */}
                 <button
                   className="w-full py-4 px-4 font-medium rounded-lg flex items-center justify-between text-lg"
                   style={{
@@ -453,23 +407,24 @@ export function PricingPage({ }: PricingPageProps) {
                 >
                   <span>
                     {expandedCard === 0
-                      ? "Continue for free"
+                      ? "Continue for Free"
                       : expandedCard === 1
-                        ? "Get My Match!"
-                        : "Schedule a Call"}
+                        ? "Get Started!"
+                        : "Get Started!"}
                   </span>
-                  <span className="font-bold">
+                  <span className="font-bold card-month">
                     {membershipTiers[expandedCard].price}
-                    {membershipTiers[expandedCard].period && (
-                      <span className="text-sm font-normal">
-                        {membershipTiers[expandedCard].period}
-                      </span>
-                    )}
+                    {/* {membershipTiers[expandedCard].period && (
+              <span className="text-sm font-normal">
+                {membershipTiers[expandedCard].period}
+              </span>
+            )} */}
                   </span>
                 </button>
 
-                <p className="text-xs text-gray-500 text-center mt-3 pt-3">
-                  Our membership can be cancelled at any time on our website.
+                {/* ✅ Mobile Note Text */}
+                <p className="text-xs text-gray-500 text-center mt-3 pt-3 match-mobile-detail-content">
+                  {membershipTiers[expandedCard].note}
                 </p>
               </div>
             </div>
@@ -478,135 +433,201 @@ export function PricingPage({ }: PricingPageProps) {
 
       </section>
 
-      {/* How IntroYou Works */}
-      <section className="py-16 px-6 how-works intro-different-wrp">
-        <div className="max-w-8xl mx-auto text-center">
-          <h2 className="text-4xl mb-4 playfair-display">
-            How{" "}
-            <span style={{ color: "#820080" }}>IntroYou</span>{" "}
-            Works?
-          </h2>
-          <p className="text-gray-600 mb-12">
-            Modern matchmaking. Built for introverts. Not
-            algorithms.
-          </p>
+      {/* How IntroYou Works Section */}
+      <section className="py-20 px-6 bg-white intro-different-wrp pt-0" id="howItWorks">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-[48px] mb-4 playfair-display font-semibold letter-53 text-0E0E0E">
+              How <span style={{ color: "#820080" }}>IntroYou</span> Works?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto text-0E0E0E">
+              Personalised, compatible introductions.
+            </p>
+          </div>
 
-          <div className="flex-col md:flex-row md:flex gap-8 dif-wrp">
-            {howItWorks.map((step, index) => (
+          <div className="flex flex-wrap justify-center -mx-[12px]">
+            {/* Box 1 - Tell us about yourself */}
+            <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp dif-inner-main">
               <div
-                key={index}
-                className="text-center w-full p-6 md:w-1/3 md:mb-0 mb-8 dif-block"
+                className="p-6 text-center h-full dif-block"
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid #EEEEEE",
-                  boxShadow:
-                    "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
                   borderRadius: "12px",
                 }}
               >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: "#FFEBFF" }}
-                >
-                  <img
-                    src={step.icon}
-                    alt={step.title}
-                    className="w-8 h-8"
-                  />
+                <div className="flex justify-center mb-4">
+                  <div
+                    className="icon-box rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#FFEBFF" }}
+                  >
+                    <img
+                      src={howWorksHeartIcon}
+                      alt="Tell us about yourself"
+                      className="w-6 h-6"
+                    />
+                  </div>
                 </div>
-                <h3 className="text-lg mb-3 playfair-display">
-                  {step.title}
+                <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
+                  Tell us about yourself
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {step.description}
+                <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                  Take a few minutes to share who you are, your values & what
+                  you're looking for. We ask the right questions to understand
+                  your goals and what really matters to you.
                 </p>
               </div>
-            ))}
+            </div>
+
+            {/* Box 2 - We curate your introductions */}
+            <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
+              <div
+                className="p-6 text-center  h-full dif-block"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #EEEEEE",
+                  boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className="icon-box rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#FFEBFF" }}
+                  >
+                    <img
+                      src={newHeartIcon}
+                      alt="We curate your introductions"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
+                  We curate your introductions
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                  Our team personally reviews every profile and selects introductions with care. Each match is intentional, reflecting your mindset, lifestyle & goals, so you’re only shown people who genuinely fit.
+                </p>
+              </div>
+            </div>
+
+            {/* Box 3 - Receive your introductions */}
+            <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
+              <div
+                className="p-6 text-center h-full dif-block"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #EEEEEE",
+                  boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className="icon-box rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#FFEBFF" }}
+                  >
+                    <img
+                      src={howWorksMessageIcon}
+                      alt="Receive your introductions"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
+                  Receive your introductions
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                  When there’s a strong match, we send you their profile. If you’re both interested, you’re introduced and can connect directly. No endless swiping, just meaningful introductions that actually lead somewhere.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <a href="https://introyou-beta.vercel.app/login"
-            className="mt-12 text-white text-center px-8 py-3 rounded-lg font-medium transition-all duration-300 btn-link hover:shadow-lg hover:scale-105 inline-flex items-center gap-2 mx-auto justify-center"
-            style={{ backgroundColor: "#820080" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#9A0A94";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#820080";
-            }}
-          >
-            <span>Find your match</span>
-            <img
-              src={heartButtonIcon}
-              alt="heart"
-              className="w-4 h-4 h-icon"
-            />
-          </a>
+          {/* CTA Button */}
+          <div className="text-center mt-12 btn-wrp">
+            <a href="https://introyou-beta.vercel.app/profile"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main ctm-btn-icon"
+              style={{ backgroundColor: "#820080" }}
+            >
+              <span className="letter-04" style={{ backgroundColor: "transparent" }}>Find your match</span>
+              <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
+            </a>
+          </div>
         </div>
       </section>
+
+
 
       {/* FAQ Section */}
-      <section
-        className="py-16 px-6"
-        style={{ backgroundColor: "#F2F0F5" }}
-      >
-        <div className="max-w-3xl mx-auto faq-row">
-          <h2 className="text-3xl text-center mb-12 playfair-display">
-            Frequently Asked Questions
-          </h2>
+      <section className="faq-wrapper" style={{ backgroundColor: "#F2F0F5" }} id="faq">
+        <div className="container">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 faq-row justify-center">
 
-          <div className="space-y-4 ">
-            {faqs.map((faq, index) => (
+
+            {/* Right Content - FAQ */}
+            <div className="w-full lg:w-1/2 faq-right">
+              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display font-semibold text-0E0E0E">
+                Frequently Asked Questions
+              </h2>
+
               <div
-                key={index}
-                className="rounded-lg overflow-hidden"
+                className="space-y-4 "
+                style={{ background: "#FFFFFF", borderRadius: "8px" }}
               >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full text-left p-4 flex justify-between items-center transition-all duration-300 ease-in-out"
-                  style={{
-                    background: openFaq === index ? "#F7F7F7" : "#FFFFFF",
-                    borderWidth: "1px 1px 0px 1px",
-                    borderStyle: "solid",
-                    borderColor: "#F7F7F7",
-                    boxShadow:
-                      "0px 4px 12px rgba(0, 0, 0, 0.12)",
-                    borderRadius: "8px 8px 0px 0px",
-                  }}
-                >
-                  <span className="font-medium">
-                    {faq.question}
-                  </span>
-                  {openFaq === index ? (
-                    <ChevronUp
-                      className="w-5 h-5 transition-transform duration-300"
-                      style={{ color: "#C747C5" }}
-                    />
-                  ) : (
-                    <ChevronDown
-                      className="w-5 h-5 transition-transform duration-300"
-                      style={{ color: "#C747C5" }}
-                    />
-                  )}
-                </button>
-                {openFaq === index && (
+                {faqs.map((faq, index) => (
                   <div
-                    className="p-4 pt-2 text-gray-600 text-sm leading-relaxed transition-all duration-300 ease-in-out"
-                    style={{
-                      background: "#FFFFFF",
-                      borderWidth: "0px 1px 1px 1px",
-                      borderStyle: "solid",
-                      borderColor: "#F7F7F7",
-                      borderRadius: "0px 0px 8px 8px",
-                    }}
+                    key={index}
+                    className={`overflow-hidden mb-0 ${openFaq === index ? "faq-active" : ""}`}
                   >
-                    {faq.answer}
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full text-left p-4 flex justify-between items-center transition-all duration-300 ease-in-out"
+                      style={{
+                        borderWidth: "1px 1px 0px 1px",
+                        borderStyle: "solid",
+                        borderColor: "#F7F7F7",
+                        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.12)",
+                      }}
+                    >
+                      <span className="font-normal text-left pr-4 letter-06 text-0E0E0E">{faq.question}</span>
+                      {openFaq === index ? (
+                        <ChevronUp
+                          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
+                          style={{ color: "#C747C5" }}
+                        />
+                      ) : (
+                        <ChevronDown
+                          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
+                          style={{ color: "#C747C5" }}
+                        />
+                      )}
+                    </button>
+
+                    {openFaq === index && (
+                      <div
+                        className="p-4 pt-2 text-sm leading-relaxed transition-all duration-300 ease-in-out faq-detail"
+                        style={{
+                          background: "#F7F7F7",
+                          color: "#4B4B4B",
+                          borderWidth: "0px 1px 1px 1px",
+                          borderStyle: "solid",
+                          borderColor: "#F7F7F7",
+                        }}
+                      >
+                        <p className="letter-06 text-494545">{faq.answer}</p>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
+
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

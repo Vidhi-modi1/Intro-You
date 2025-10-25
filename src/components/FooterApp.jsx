@@ -27,11 +27,11 @@ const FooterApp = () => {
       style={{ borderTop: "1px solid rgba(0, 0, 0, 0.1)" }}
     >
       <div className="container py-12 px-6 footer-main">
-        <div className="flex flex-col lg:flex-row justify-center">
+        <div className="flex flex-col lg:flex-row justify-center footer-inner-main">
           {/* Left Content - Logo and Description */}
           <div className="w-full lg:w-2/12 footer-top">
             <img src={logoImage} alt="IntroYou" className="h-8 mb-4 cursor-pointer" onClick={() => navigate("/")} />
-            <p className="text-gray-600 mb-6">
+            <p className="text-black mb-6">
               Thoughtful introductions,
               <br />
               not endless swiping.
@@ -67,7 +67,7 @@ const FooterApp = () => {
                                 </a> */}
                     <Link
                       to="/"
-                      className="hover:text-black transition-colors"
+                      className="hover:text-black transition-colors text-0E0E0E"
 
                     >
                       Home Page
@@ -76,7 +76,7 @@ const FooterApp = () => {
                   <li className="mb-5">
                     <span
                       onClick={() => handleScrollTo("howItWorks")}
-                      className="hover:text-black transition-colors cursor-pointer"
+                      className="hover:text-black transition-colors cursor-pointer text-0E0E0E"
                     >
                       How It Works
                     </span>
@@ -90,7 +90,7 @@ const FooterApp = () => {
                                 </a> */}
                     <span
                       onClick={() => handleScrollTo("whyIntroYou")}
-                      className="hover:text-black transition-colors cursor-pointer"
+                      className="hover:text-black transition-colors cursor-pointer text-0E0E0E"
                     >
                       Why IntroYou
                     </span>
@@ -102,7 +102,7 @@ const FooterApp = () => {
 
                     <Link
                       to="/safedatingpolicy"
-                      className="hover:text-black transition-colors"
+                      className="hover:text-black transition-colors text-0E0E0E"
                     >
                       Safe Dating Policy
                     </Link>
@@ -127,7 +127,7 @@ const FooterApp = () => {
 
                     <span
                       onClick={() => handleScrollTo("faq")}
-                      className="hover:text-black transition-colors cursor-pointer"
+                      className="hover:text-black transition-colors cursor-pointer text-0E0E0E"
                     >
                       FAQs
                     </span>
@@ -142,7 +142,7 @@ const FooterApp = () => {
                                 </a> */}
                     <Link
                       to="/contact"
-                      className="hover:text-black transition-colors"
+                      className="hover:text-black transition-colors text-0E0E0E"
 
                     >
                       Contact Us
@@ -152,7 +152,7 @@ const FooterApp = () => {
 
                     <Link
                       to="/terms"
-                      className="hover:text-black transition-colors"
+                      className="hover:text-black transition-colors text-0E0E0E"
 
                     >
                       Terms & Conditions
@@ -162,7 +162,7 @@ const FooterApp = () => {
 
                     <Link
                       to="/policy"
-                      className="hover:text-black transition-colors"
+                      className="hover:text-black transition-colors text-0E0E0E"
                     >
                       Privacy Policy
                     </Link>
@@ -177,7 +177,7 @@ const FooterApp = () => {
           <div className="w-full max-w-[407px] md:ml-[80px] footer-bottom">
             {/* Know Someone Section */}
             <div
-              className="p-6 mb-6 inline-block w-full"
+              className="p-6 mb-6 inline-block w-full f-block-main"
               style={{
                 background: "#F7F7F7",
                 borderRadius: "167.763px",
@@ -185,13 +185,13 @@ const FooterApp = () => {
             >
               <div className="flex items-start justify-center gap-3">
                 <div className="text-center">
-                  <h4 className="font-medium text-black ">
+                  <h4 className="font-medium text-black letter-04">
                     Know someone tired of dating apps?
                   </h4>
-                  <p className="text-gray-600 text-sm mb-2">
+                  <p className="text-gray-600 text-sm mb-2 letter-04">
                     Help them meet someone real
                   </p>
-                  <p className="text-[#820080] text-sm font-medium flex justify-center gap-1">
+                  <p className="text-[#820080] text-sm font-medium flex justify-center gap-1 footer-share letter-04">
                     Share <span className="font-bold">IntroYou</span> with a
                     friend{" "}
                     <img

@@ -1,29 +1,21 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
-import logoImage from "figma:asset/1317259af126a2231a0e530aedf3b68e2e27ad9e.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import {  ChevronDown, ChevronUp } from "lucide-react";
 import heroBackground from "../assets/banner-video.mov";
-import instagramIcon from "figma:asset/f7eaad85d15b011eed12057556a4b1ed5ee82bab.png";
-import tiktokIcon from "figma:asset/e2588539a1e2311495c764cb38440d49056e7b2f.png";
-import mediaLogos from "figma:asset/f155cf5f41db1f44deca305754495067df65f873.png";
 import bbcLogo from "figma:asset/1210440e0f5e84f8df640df0d164921393ab8ca5.png";
 import heartButtonIcon from "figma:asset/3b78bb2c9df6774abaf1349c5427ba87c276ded9.png";
-import realShape from "figma:asset/fa1763f5797a2ff04f21d43071f92fb79857ebc5.png";
 import circleShape from "figma:asset/aad7ff2e480d658db8abe3b73463af325f0a21df.png";
 import arrowShape from "figma:asset/fce5844d210ee2d3265bd497d9b2c5555c866698.png";
-import calendarIcon from "figma:asset/81c41d1d6733784ca73d53fe239e70a98afa1216.png";
 import heartDifferentIcon from "figma:asset/b5c905144a82df1d07d3c81634872a6e0759c964.png";
 import accessibilityIcon from "figma:asset/bc6e9ad348132897f4f27a875b5d5e0690eeb05e.png";
 import checkmarkIcon from "figma:asset/bbfa7dab0f3da1d7dc12afef0fcc570a0c0938ad.png";
-import heartQualityIcon from "figma:asset/9a01c0ec700bff6c443470f8ae3258406f8e9cb9.png";
 import crownIcon from "figma:asset/ee5659954383da0b2c7868fe55fbafef4aab0e8c.png";
-import storyImage from "figma:asset/820b19f86ad00b340976857c50ff77be15edfd15.png";
 import foundersPhoto from "../assets/4f12ee2c221edd065a303114b625d92e4910a7b8.png";
 import storyBehindBackground from "figma:asset/bfd7a40e72d57066b21cd625646ed2f44048a20a.png";
 import backImage from "../assets/back-img.png";
+import backmobileImage from "../assets/mobile-image.png";
 import signatureImage from "figma:asset/13eeee068b52e50b597138d02c16d2f4dec876c9.png";
 import heartNewIcon from "figma:asset/9a01c0ec700bff6c443470f8ae3258406f8e9cb9.png";
-import howWorksProfileIcon from "figma:asset/70d102236106b2282d6f55b8f4f57cc3afea6a4d.png";
 import howWorksHeartIcon from "figma:asset/061a76defe5a622732879b36b3de1f4032a6ad5b.png";
 import howWorksMessageIcon from "figma:asset/9b3a6b4c7f03aa957ec22f59df76c4d020d92a37.png";
 import itvLogo from "figma:asset/42ee49936b73610672e2b436b1ba768efc10af46.png";
@@ -35,7 +27,6 @@ import metroLogo from "figma:asset/aef650f951484abfb3ef17f88802e8cc52c4149f.png"
 import newHeartIcon from "figma:asset/6a1b654a7eeca9a8d7baeba8bd31a76f96a7d0b2.png";
 import coupleImage from "figma:asset/3de54880b8a6b5ee1f5705a511ff2be04da832a8.png";
 import yahooLogoExtra from "figma:asset/290973993221e5de301713490e3618ef76960344.png";
-import footerHeartIcon from "figma:asset/825ba557c87de8f2b4335468874e5eb17f98f401.png";
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -47,15 +38,15 @@ import { FreeMode, Autoplay, Pagination } from "swiper/modules";
 import FooterApp from "./FooterApp";
 import HeaderApp from "./HeaderApp";
 
-interface HomePageProps {}
+interface HomePageProps { }
 
-export function HomePage({}: HomePageProps) {
+export function HomePage({ }: HomePageProps) {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userGender, setUserGender] = useState("Woman");
   const [lookingFor, setLookingFor] = useState("Man");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-   const location = useLocation();
+  const location = useLocation();
 
   const faqs = [
     {
@@ -98,38 +89,36 @@ export function HomePage({}: HomePageProps) {
       document.body.classList.remove('overflow-hidden');
     }
 
-    // Cleanup function to remove class when component unmounts
     return () => {
       document.body.classList.remove('overflow-hidden');
     };
   }, [mobileMenuOpen]);
 
-useEffect(() => {
-  if (location.state?.scrollTo) {
-    const scrollToElement = () => {
-      const element = document.getElementById(location.state.scrollTo);
-      if (element) {
-        const yOffset = -80; // adjust if you have fixed header
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      } else {
-        // Retry in next frame if element not found yet
-        requestAnimationFrame(scrollToElement);
-      }
-    };
-    scrollToElement();
-  }
-}, [location.state]);
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const scrollToElement = () => {
+        const element = document.getElementById(location.state.scrollTo);
+        if (element) {
+          const yOffset = -80;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        } else {
+          requestAnimationFrame(scrollToElement);
+        }
+      };
+      scrollToElement();
+    }
+  }, [location.state]);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const scrollToSpecificElement =(id:any)=>{
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+  const scrollToSpecificElement = (id: any) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   return (
@@ -152,17 +141,17 @@ useEffect(() => {
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">
-          <h1 className="text-5xl md:text-[64px] mb-2 playfair-display leading-tight banner-heading">
+          <h1 className="text-5xl md:text-[64px] mb-2 playfair-display leading-tight banner-heading font-semibold">
             The Intentional Way To Date
           </h1>
-          <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-2xl mx-auto leading-10 font-normal">
+          <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-2xl mx-auto leading-10 font-normal letter-04">
             Thoughtful introductions, designed for people who want something
             real.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
             <a href="https://introyou-beta.vercel.app/profile"
-              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main"
+              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04"
               style={{ backgroundColor: "#820080" }}
             >
               Let's Find Your Match
@@ -183,8 +172,8 @@ useEffect(() => {
 
             <a
               //href=""
-                onClick={() => scrollToSpecificElement("howItWorks")}
-              className="text-white hover:text-purple-300 transition-colors duration-200 text-lg underline underline-offset-4 cursor-pointer"
+              onClick={() => scrollToSpecificElement("howItWorks")}
+              className="text-white hover:text-switch-background transition-colors duration-200 text-lg underline underline-offset-4 cursor-pointer btn-link-top letter-04"
             >
               How It Works?
             </a>
@@ -203,7 +192,7 @@ useEffect(() => {
               In the press
             </span>
           </div>
-          
+
           {/* Desktop Marquee - Hidden on Mobile */}
           <div className="relative overflow-hidden hidden md:block">
             <div
@@ -301,7 +290,7 @@ useEffect(() => {
               />
             </div>
           </div>
-          
+
           {/* Mobile Slider - Visible only on Mobile */}
           <div className="md:hidden px-4 mobile-slider">
             <Swiper
@@ -310,14 +299,14 @@ useEffect(() => {
               slidesPerView={3}
               freeMode={false}
               loop={true}
-              // autoplay={{
-              //   delay: 2500,
-              //   disableOnInteraction: false,
-              // }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
               pagination={{
                 clickable: true,
                 dynamicBullets: true,
-                dynamicMainBullets: 3,  
+                dynamicMainBullets: 3,
               }}
               className="w-full press-logos-swiper pb-10"
             >
@@ -386,9 +375,8 @@ useEffect(() => {
       <section className="py-20 px-6 bg-grey intro-wrp" id="contactUs">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center">
-            {/* Left Content - 5/12 */}
             <div className="w-full lg:w-5/12 intro-left">
-              <h2 className="text-[48px] mb-[35px] playfair-display leading-tight font-semibold">
+              <h2 className="text-[48px] mb-[35px] playfair-display leading-tight font-semibold letter-53 text-0E0E0E">
                 Done with apps?
                 <br />
                 Try something{" "}
@@ -409,17 +397,15 @@ useEffect(() => {
                   />
                 </span>
               </h2>
-              <p className="text-base lg:text-lg text-gray-600 mb-8 leading-relaxed">
-               IntroYou makes dating simple again. No 
-                swiping, no public profiles, no wasted time. 
-                Instead, you’ll receive private introductions 
-                curated around compatibility and intention, 
-                giving you the best chance of meeting 
+              <p className="text-base lg:text-lg text-gray-600 mb-8 leading-relaxed letter-06 text-0E0E0E">
+                IntroYou makes dating simple again. No
+                swiping, no public profiles, no wasted time.
+                Instead, you’ll receive private introductions
+                curated around compatibility and intention,
+                giving you the best chance of meeting
                 someone real.
               </p>
             </div>
-
-            {/* Right Content - Form - 7/12 */}
             <div className="w-full lg:w-7/12 intro-right">
               <div
                 className="bg-white p-6 lg:p-8 rounded-2xl intro-form"
@@ -430,10 +416,10 @@ useEffect(() => {
                   borderRadius: "16px",
                 }}
               >
-                <h3 className="text-lg lg:text-[26px] playfair-display font-semibold">
+                <h3 className="text-lg lg:text-[26px] playfair-display font-semibold text-0E0E0E">
                   Who would you like us to introduce you to?
                 </h3>
-                <p className="text-gray-600 mb-4 lg:mb-4 text-[18px]">
+                <p className="text-707070 mb-4 lg:mb-4 text-[18px] letter-04">
                   Select your preference to begin your journey.
                 </p>
 
@@ -441,14 +427,14 @@ useEffect(() => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* I'm a dropdown */}
                     <div>
-                      <label className="block text-sm text-gray-700 mb-2 font-semibold">
+                      <label className="block text-sm text-0E0E0E mb-2 font-semibold letter-04">
                         I'm a
                       </label>
                       <div className="relative">
                         <select
                           value={userGender}
                           onChange={(e) => setUserGender(e.target.value)}
-                          className="w-full py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent italic"
+                          className="w-full text-707070 py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent italic"
                         >
                           <option value="Woman">Woman</option>
                           <option value="Man">Man</option>
@@ -459,14 +445,14 @@ useEffect(() => {
 
                     {/* Looking for a dropdown */}
                     <div>
-                      <label className="block text-sm text-gray-700 mb-2 font-bold">
+                      <label className="block text-sm text-gray-700 mb-2 font-semibold letter-04">
                         I’d like to be introduced to
                       </label>
                       <div className="relative">
                         <select
                           value={lookingFor}
                           onChange={(e) => setLookingFor(e.target.value)}
-                          className="w-full py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent italic"
+                          className="w-full text-707070 py-2 px-4 border border-gray-300 rounded-lg text-sm bg-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent italic"
                         >
                           <option value="Woman">Woman</option>
                           <option value="Man">Man</option>
@@ -476,14 +462,14 @@ useEffect(() => {
                     </div>
                   </div>
 
-                  <a 
-                  //href="https://introyou-beta.vercel.app/login"
-                   href="https://introyou-beta.vercel.app/profile"
+                  <a
+                    //href="https://introyou-beta.vercel.app/login"
+                    href="https://introyou-beta.vercel.app/profile"
                     //onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 mt-6 flex items-center justify-center gap-2 btn-main"
                     style={{ backgroundColor: "#820080" }}
                   >
-                    <span>Let Us Introduce You</span>
+                    <span className="letter-04">Let Us Introduce You</span>
                     <img
                       src={heartButtonIcon}
                       alt="heart"
@@ -501,20 +487,20 @@ useEffect(() => {
       <section className="py-20 px-6 bg-white intro-different-wrp" id="whyIntroYou">
         <div className="container mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl lg:text-[48px] playfair-display font-semibold">
+            <h2 className="text-3xl lg:text-[48px] playfair-display font-semibold letter-53 text-0E0E0E">
               Why <span style={{ color: "#820080" }}>IntroYou</span> is
               Different?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-0E0E0E max-w-2xl mx-auto letter-06">
               Modern matchmaking, built for introverts—not algorithms.
             </p>
           </div>
 
-          {/* Flex Layout - All boxes same size */}
           <div className=" mx-auto">
             <div className="flex flex-wrap justify-center -mx-[6px]">
+
               {/* Box 1 - Curated Introductions */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp dif-inner-main">
                 <div
                   className="p-6 text-center h-full dif-block"
                   style={{
@@ -536,17 +522,17 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-2 font-bold">
+                  <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
                     Curated Introductions. No Swiping.
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
-                  Endless swiping is a waste of time. Here, every profile is hand-selected for real compatibility based on what you’re looking for. You only see people who actually matter.
+                  <p className="text-gray-600 text-base leading-relaxed letter-04">
+                    Endless swiping is a waste of time. Here, every profile is hand-selected for real compatibility based on what you’re looking for. You only see people who actually matter.
                   </p>
                 </div>
               </div>
 
               {/* Box 2 - Discreet by Design */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
                 <div
                   className="p-6 text-center h-full dif-block"
                   style={{
@@ -568,18 +554,18 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-2 font-bold">
+                  <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
                     Discreet by Design
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                  Your profile isn’t public and can’t be searched. Introductions are private and intentional, shared
-                  only when there’s genuine alignment with your preferences.
+                  <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                    Your profile isn’t public and can’t be searched. Introductions are private and intentional, shared
+                    only when there’s genuine alignment with your preferences.
                   </p>
                 </div>
               </div>
 
               {/* Box 3 - Designed for Real Connections */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-block">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
                 <div
                   className="p-6 text-center h-full dif-block"
                   style={{
@@ -601,17 +587,17 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-2 font-bold">
+                  <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
                     Designed for Real Connections
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                  We can't promise love at first sight, but every feature is built to give you the best chance of finding it. Meaningful introductions, genuine people, and a process designed to help something real begin.
+                  <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                    We can't promise love at first sight, but every feature is built to give you the best chance of finding it. Meaningful introductions, genuine people, and a process designed to help something real begin.
                   </p>
                 </div>
               </div>
 
               {/* Box 4 - Quality Over Quantity */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
                 <div
                   className="p-6 text-center h-full dif-block"
                   style={{
@@ -633,17 +619,17 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-2 font-bold">
+                  <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
                     Quality Over Quantity
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                  No bot. No spam. No time-wasters. Every people is vetted by u, so you only meet like-minded singles who match your standards.
+                  <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                    No bot. No spam. No time-wasters. Every people is vetted by u, so you only meet like-minded singles who match your standards.
                   </p>
                 </div>
               </div>
 
               {/* Box 5 - A Premium Community */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
+              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
                 <div
                   className="p-6 text-center h-full dif-block"
                   style={{
@@ -665,11 +651,11 @@ useEffect(() => {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg mb-2 font-bold">
+                  <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
                     A Premium Community
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                  Most apps are crowded with people looking for flings. IntroYou is different. It's a trusted space of singles who want real connections. If you're here, you're already ahead.
+                  <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                    Most apps are crowded with people looking for flings. IntroYou is different. It's a trusted space of singles who want real connections. If you're here, you're already ahead.
                   </p>
                 </div>
               </div>
@@ -679,11 +665,10 @@ useEffect(() => {
           {/* CTA Button */}
           <div className="text-center mt-10 btn-wrp">
             <a href="https://introyou-beta.vercel.app/profile"
-              // onClick={() => navigate('/pricing')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
-              <span>Find your match</span>
+              <span className="letter-04">Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>
@@ -714,6 +699,17 @@ useEffect(() => {
             zIndex: 3,
           }}
         ></div>
+        <div
+          className="absolute inset-0 bg-overlay-img bg-overlay-mobile"
+          style={{
+            backgroundImage: `url(${backmobileImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "top center",
+            mixBlendMode: "multiply",
+            backgroundRepeat: "no-repeat",
+            zIndex: 3,
+          }}
+        ></div>
 
         <div
           className="absolute inset-0"
@@ -725,7 +721,7 @@ useEffect(() => {
         ></div>
 
         <div className="mx-auto relative z-10" style={{ zIndex: 3 }}>
-          <h2 className="lg:text-[48px] mb-8 playfair-display text-center font-medium">
+          <h2 className="lg:text-[48px] mb-8 playfair-display text-center font-medium letter-53">
             The Story Behind <span className="font-semibold">IntroYou</span>
           </h2>
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 story-row">
@@ -761,7 +757,7 @@ useEffect(() => {
                     width="330"
                     height="53"
                   />
-                  <div className="text-sm lg:text-base opacity-90">Founders</div>
+                  <div className="text-sm lg:text-base opacity-90 letter-116">Founders</div>
                 </div>
                 <p>
                   Our journey began in the most unexpected way. Two strangers
@@ -811,127 +807,121 @@ useEffect(() => {
       <section className="py-20 px-6 bg-white intro-different-wrp" id="howItWorks">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-[48px] mb-4 playfair-display">
+            <h2 className="text-3xl lg:text-[48px] mb-4 playfair-display font-semibold letter-53 text-0E0E0E">
               How <span style={{ color: "#820080" }}>IntroYou</span> Works?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Modern matchmaking, built for intention—not algorithms.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto text-0E0E0E">
+            Personalised, compatible introductions.
             </p>
           </div>
 
-            <div className="flex flex-wrap justify-center -mx-[12px]">
-              {/* Box 1 - Tell us about yourself */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp">
-                <div
-                  className="p-6 text-center h-full dif-block"
-                  style={{
-                    background: "#FFFFFF",
-                    border: "1px solid #EEEEEE",
-                    boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
-                    borderRadius: "12px",
-                  }}
-                >
-                  <div className="flex justify-center mb-4">
-                    <div
-                      className="icon-box rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#FFEBFF" }}
-                    >
-                      <img
-                        src={howWorksHeartIcon}
-                        alt="Tell us about yourself"
-                        className="w-6 h-6"
-                      />
-                    </div>
+          <div className="flex flex-wrap justify-center -mx-[12px]">
+            {/* Box 1 - Tell us about yourself */}
+            <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-wrp dif-inner-main">
+              <div
+                className="p-6 text-center h-full dif-block"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #EEEEEE",
+                  boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className="icon-box rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#FFEBFF" }}
+                  >
+                    <img
+                      src={howWorksHeartIcon}
+                      alt="Tell us about yourself"
+                      className="w-6 h-6"
+                    />
                   </div>
-                  <h3 className="text-lg mb-2 font-bold">
-                    Tell us about yourself
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Take a few minutes to share who you are, your values & what
-                    you're looking for. We ask the right questions to understand
-                    your goals and what really matters to you.
-                  </p>
                 </div>
-              </div>
-
-              {/* Box 2 - We curate your introductions */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
-                <div
-                  className="p-6 text-center  h-full dif-block"
-                  style={{
-                    background: "#FFFFFF",
-                    border: "1px solid #EEEEEE",
-                    boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
-                    borderRadius: "12px",
-                  }}
-                >
-                  <div className="flex justify-center mb-4">
-                    <div
-                      className="icon-box rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#FFEBFF" }}
-                    >
-                      <img
-                        src={newHeartIcon}
-                        alt="We curate your introductions"
-                        className="w-6 h-6"
-                      />
-                    </div>
-                  </div>
-                  <h3 className="text-lg mb-2 font-bold">
-                    We curate your introductions
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Our team personally reviews every profile and selects
-                    introductions with care. Each match is intentional,
-                    reflecting your mindset, lifestyle & goals, so you're only
-                    shown people who genuinely fit.
-                  </p>
-                </div>
-              </div>
-
-              {/* Box 3 - Receive your introductions */}
-              <div className="md:w-4/12 w-full px-[12px] mb-[24px]">
-                <div
-                  className="p-6 text-center h-full dif-block"
-                  style={{
-                    background: "#FFFFFF",
-                    border: "1px solid #EEEEEE",
-                    boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
-                    borderRadius: "12px",
-                  }}
-                >
-                  <div className="flex justify-center mb-4">
-                    <div
-                      className="icon-box rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#FFEBFF" }}
-                    >
-                      <img
-                        src={howWorksMessageIcon}
-                        alt="Receive your introductions"
-                        className="w-6 h-6"
-                      />
-                    </div>
-                  </div>
-                  <h3 className="text-lg mb-2 font-bold">
-                    Receive your introductions
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    When there's a strong match, we send you their profile. If
-                    you're both interested, you're introduced and can connect
-                    directly. No endless swiping, just meaningful introductions
-                    that actually lead somewhere.
-                  </p>
-                </div>
+                <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
+                  Tell us about yourself
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                  Take a few minutes to share who you are, your values & what
+                  you're looking for. We ask the right questions to understand
+                  your goals and what really matters to you.
+                </p>
               </div>
             </div>
 
+            {/* Box 2 - We curate your introductions */}
+            <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
+              <div
+                className="p-6 text-center  h-full dif-block"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #EEEEEE",
+                  boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className="icon-box rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#FFEBFF" }}
+                  >
+                    <img
+                      src={newHeartIcon}
+                      alt="We curate your introductions"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
+                  We curate your introductions
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                Our team personally reviews every profile and selects introductions with care. Each match is intentional, reflecting your mindset, lifestyle & goals, so you’re only shown people who genuinely fit.
+                </p>
+              </div>
+            </div>
+
+            {/* Box 3 - Receive your introductions */}
+            <div className="md:w-4/12 w-full px-[12px] mb-[24px] dif-inner-main">
+              <div
+                className="p-6 text-center h-full dif-block"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #EEEEEE",
+                  boxShadow: "0px 28px 36px -16px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className="icon-box rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#FFEBFF" }}
+                  >
+                    <img
+                      src={howWorksMessageIcon}
+                      alt="Receive your introductions"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg mb-2 font-bold letter-04 text-0E0E0E">
+                  Receive your introductions
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
+                When there’s a strong match, we send you their profile. If you’re both interested, you’re introduced and can connect directly. No endless swiping, just meaningful introductions that actually lead somewhere.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* CTA Button */}
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 btn-wrp">
             <a href="https://introyou-beta.vercel.app/profile"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
-              <span  style={{ backgroundColor: "transparent" }}>Find your match</span>
+              <span className="letter-04" style={{ backgroundColor: "transparent" }}>Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>
@@ -966,19 +956,19 @@ useEffect(() => {
 
                   {/* Content Overlay */}
                   <div className="absolute bottom-8 text-white bottom-tell-us-block">
-                    <h3 className="text-3xl lg:text-4xl mb-2 playfair-display font-semibold">
+                    <h3 className="text-3xl lg:text-4xl mb-2 playfair-display font-semibold letter-04">
                       Tired of dating apps?
                     </h3>
-                    <p className="text-[18px] mb-6 opacity-90">
+                    <p className="text-[18px] mb-6 opacity-90 letter-06">
                       That’s because they are built to keep you scrolling & single. We’re not. Let us IntroYou.
                     </p>
                     <a href="https://introyou-beta.vercel.app/profile"
-                      className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 mx-auto w-full btn-main"
+                      className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 mx-auto w-full btn-main letter-04"
                       style={{ backgroundColor: "#820080" }}
                     >
                       Tell us who you are looking for
                     </a>
-                    <p className="text-sm mt-2 opacity-75 text-center grey-text">
+                    <p className="text-sm mt-2 opacity-75 text-center grey-text letter-06">
                       It takes only 3-minutes
                     </p>
                   </div>
@@ -988,7 +978,7 @@ useEffect(() => {
 
             {/* Right Content - FAQ */}
             <div className="w-full lg:w-1/2 faq-right">
-              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display font-semibold">
+              <h2 className="text-3xl lg:text-4xl mb-8 playfair-display font-semibold text-0E0E0E">
                 Frequently Asked Questions
               </h2>
 
@@ -997,50 +987,50 @@ useEffect(() => {
                 style={{ background: "#FFFFFF", borderRadius: "8px" }}
               >
                 {faqs.map((faq, index) => (
-  <div
-    key={index}
-    className={`overflow-hidden mb-0 ${openFaq === index ? "faq-active" : ""}`}
-  >
-    <button
-      onClick={() => toggleFaq(index)}
-      className="w-full text-left p-4 flex justify-between items-center transition-all duration-300 ease-in-out"
-      style={{
-        borderWidth: "1px 1px 0px 1px",
-        borderStyle: "solid",
-        borderColor: "#F7F7F7",
-        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.12)",
-      }}
-    >
-      <span className="font-normal text-left pr-4">{faq.question}</span>
-      {openFaq === index ? (
-        <ChevronUp
-          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
-          style={{ color: "#C747C5" }}
-        />
-      ) : (
-        <ChevronDown
-          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
-          style={{ color: "#C747C5" }}
-        />
-      )}
-    </button>
+                  <div
+                    key={index}
+                    className={`overflow-hidden mb-0 ${openFaq === index ? "faq-active" : ""}`}
+                  >
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full text-left p-4 flex justify-between items-center transition-all duration-300 ease-in-out"
+                      style={{
+                        borderWidth: "1px 1px 0px 1px",
+                        borderStyle: "solid",
+                        borderColor: "#F7F7F7",
+                        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.12)",
+                      }}
+                    >
+                      <span className="font-normal text-left pr-4 letter-06 text-0E0E0E">{faq.question}</span>
+                      {openFaq === index ? (
+                        <ChevronUp
+                          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
+                          style={{ color: "#C747C5" }}
+                        />
+                      ) : (
+                        <ChevronDown
+                          className="w-5 h-5 transition-transform duration-300 flex-shrink-0"
+                          style={{ color: "#C747C5" }}
+                        />
+                      )}
+                    </button>
 
-    {openFaq === index && (
-      <div
-        className="p-4 pt-2 text-sm leading-relaxed transition-all duration-300 ease-in-out faq-detail"
-        style={{
-          background: "#F7F7F7",
-          color: "#4B4B4B",
-          borderWidth: "0px 1px 1px 1px",
-          borderStyle: "solid",
-          borderColor: "#F7F7F7",
-        }}
-      >
-        <p>{faq.answer}</p>
-      </div>
-    )}
-  </div>
-))}
+                    {openFaq === index && (
+                      <div
+                        className="p-4 pt-2 text-sm leading-relaxed transition-all duration-300 ease-in-out faq-detail"
+                        style={{
+                          background: "#F7F7F7",
+                          color: "#4B4B4B",
+                          borderWidth: "0px 1px 1px 1px",
+                          borderStyle: "solid",
+                          borderColor: "#F7F7F7",
+                        }}
+                      >
+                        <p className="letter-06 text-494545">{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
 
               </div>
             </div>
@@ -1049,7 +1039,7 @@ useEffect(() => {
       </section>
 
       {/* Footer */}
-                <FooterApp />
+      <FooterApp />
     </div>
   );
 }
