@@ -668,7 +668,7 @@ export function HomePage({ }: HomePageProps) {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
-              <span className="letter-04">Find your match</span>
+              <span className="letter-04 sf-font">Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>
@@ -921,7 +921,7 @@ export function HomePage({ }: HomePageProps) {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
-              <span className="letter-04" style={{ backgroundColor: "transparent" }}>Find your match</span>
+              <span className="letter-04 sf-font" style={{ backgroundColor: "transparent" }}>Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>

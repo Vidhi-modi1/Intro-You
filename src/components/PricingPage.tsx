@@ -188,7 +188,7 @@ export function PricingPage({ }: PricingPageProps) {
                 {/* Badge for each card */}
                 {index === 0 && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-base font-semibold z-10 letter-04 font-raleway"
+                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-base font-bold z-10 letter-04 raleway-font"
                     style={{
                       background: "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
                       opacity: 0.6,
@@ -200,7 +200,7 @@ export function PricingPage({ }: PricingPageProps) {
                 )}
                 {tier.popular && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-10 flex items-center justify-center text-white font-semibold z-10 letter-04 text-xl"
+                    className="absolute top-0 left-0 right-0 h-10 flex items-center justify-center text-white font-extrabold z-10 letter-04 text-xl raleway-font"
                     style={{
                       background: "linear-gradient(90deg, #820080 0%, #C747C5 100%)",
                       borderRadius: "12px 12px 0px 0px",
@@ -211,7 +211,7 @@ export function PricingPage({ }: PricingPageProps) {
                 )}
                 {index === 2 && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-base font-semibold bg-black z-10"
+                    className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center text-white text-base font-bold bg-black z-10 raleway-font"
                     style={{
                       borderRadius: "8.33599px 8.33599px 0px 0px",
                     }}
@@ -551,7 +551,7 @@ export function PricingPage({ }: PricingPageProps) {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main ctm-btn-icon"
               style={{ backgroundColor: "#820080" }}
             >
-              <span className="letter-04" style={{ backgroundColor: "transparent" }}>Find your match</span>
+              <span className="letter-04 sf-font" style={{ backgroundColor: "transparent" }}>Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>

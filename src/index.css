@@ -6300,6 +6300,7 @@ header .btn-main:hover {
 
 .faq-right p {
   font-size: 16px;
+  font-weight: 300;
 }
 
 .faq-wrapper .faq-active span {
@@ -6722,4 +6723,16 @@ footer ul li a:hover {
 
 .logo-inner img {
   height: 48px;
+}
+.sf-font {
+font-family: 'SF Pro Text', sans-serif;
+font-weight: 600;
+}
+
+.raleway-font {
+  font-family: "Raleway", sans-serif;
+}
+
+.font-extrabold {
+  font-weight: 900;
 }

@@ -1,8 +1,19 @@
 
 
+/* SF Pro Text Font */
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('/fonts/SF-Pro-Text-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
+
 :root {
   --font-size: 16px;
+  --font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -41,6 +52,11 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Apply font to body */
+body {
+  font-family: var(--font-family);
 }
 
 .dark {
