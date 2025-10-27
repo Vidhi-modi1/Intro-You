@@ -151,7 +151,7 @@ export function HomePage({ }: HomePageProps) {
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
             <a href="https://introyou-beta.vercel.app/profile"
-              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04"
+              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
               style={{ backgroundColor: "#820080" }}
             >
               Let's Find Your Match
@@ -492,7 +492,7 @@ export function HomePage({ }: HomePageProps) {
               Different?
             </h2>
             <p className="text-lg text-0E0E0E max-w-2xl mx-auto letter-06">
-              Modern matchmaking, built for introverts—not algorithms.
+            Quality over volume. No swiping, no games. Get curated introductions focused on compatibility with your values.
             </p>
           </div>
 

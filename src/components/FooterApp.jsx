@@ -48,13 +48,13 @@ const FooterApp = () => {
               paddingRight: "74px",
             }}
           >
-            <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] mobile-heading">
+            <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] mobile-heading hidden">
               Menu
             </h4>
             <div className="grid grid-cols-2 gap-8">
               {/* Left Menu Column */}
               <div>
-                <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] desktop-heading">
+                <h4 className="font-medium mb-4 text-[#820080] playfair-display mb-[38px] text-[22px] desktop-heading hidden">
                   Menu
                 </h4>
                 <ul className="space-y-3 text-gray-600">
@@ -113,7 +113,7 @@ const FooterApp = () => {
 
               {/* Right Menu Column */}
               <div>
-                <h4 className="font-medium mb-4 text-transparent playfair-display mb-[38px] text-[22px] desktop-heading">
+                <h4 className="font-medium mb-4 text-transparent playfair-display mb-[38px] text-[22px] desktop-heading hidden">
                   Menu
                 </h4>
                 <ul className="space-y-3 text-gray-600">
@@ -191,7 +191,7 @@ const FooterApp = () => {
                   <p className="text-gray-600 text-sm mb-2 letter-04">
                     Help them meet someone real
                   </p>
-                  <p className="text-[#820080] text-sm font-medium flex justify-center gap-1 footer-share letter-04">
+                  {/* <p className="text-[#820080] text-sm font-medium flex justify-center gap-1 footer-share letter-04">
                     Share <span className="font-bold">IntroYou</span> with a
                     friend{" "}
                     <img
@@ -199,7 +199,35 @@ const FooterApp = () => {
                       alt="Heart"
                       className="w-4 h-4 flex-shrink-0 h-icon"
                     />
-                  </p>
+                  </p> */}
+<a
+  href="#"
+  onClick={(e) => {
+    e.preventDefault(); // prevent page reload
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "IntroYou",
+          text: "Check out IntroYou — a real connection beyond dating apps!",
+          url: "https://intro-you.com", // ✅ replace with your live site URL
+        })
+        .then(() => console.log("Shared successfully"))
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+      alert("Sharing is not supported on this device/browser.");
+    }
+  }}
+  className="text-[#820080] text-sm font-medium flex justify-center gap-1 footer-share letter-04 cursor-pointer hover:opacity-80 transition-opacity"
+>
+  Share <span className="font-bold">IntroYou</span> with a friend{" "}
+  <img
+    src={footerHeartIcon}
+    alt="Heart"
+    className="w-4 h-4 flex-shrink-0 h-icon"
+  />
+</a>
+
+
                 </div>
               </div>
             </div>

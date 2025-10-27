@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import instagramIcon from "figma:asset/f7eaad85d15b011eed12057556a4b1ed5ee82bab.png";
 import logoImage from "figma:asset/1317259af126a2231a0e530aedf3b68e2e27ad9e.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import tiktokIcon from "figma:asset/e2588539a1e2311495c764cb38440d49056e7b2f.png";
+import heartButtonIcon from "figma:asset/3b78bb2c9df6774abaf1349c5427ba87c276ded9.png";
 
 const HeaderApp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+      if (mobileMenuOpen) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
+  
+      return () => document.body.classList.remove("overflow-hidden");
+    }
+  }, [mobileMenuOpen]);
+  
 
   const handleScrollTo = (id) => {
     setMobileMenuOpen(!mobileMenuOpen)
@@ -202,16 +216,17 @@ const HeaderApp = () => {
             >
               <a
                 href="https://introyou-beta.vercel.app/profile"
-                className="flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center px-2"
                 style={{ backgroundColor: "#820080" }}
               >
-                Join Now ♡
+                <span className="letter-04 sf-font">Join Now </span>
+                <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
               </a>
 
               <a
                 //href="/login"
                 href="https://introyou-beta.vercel.app/login"
-                className="flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center"
+                className="flex-1 py-3 rounded-md text-white transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center letter-04 sf-font px-2"
                 style={{ backgroundColor: "#171D29" }}
               >
                 Login
@@ -250,61 +265,43 @@ const HeaderApp = () => {
               <p className="font-semibold">Menu</p>
               <Link
                 to="/"
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 Home
               </Link>
               <span
                 onClick={() => handleScrollTo("whyIntroYou")}
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 Why IntroYou
               </span>
               <Link
                 to="/pricing"
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 About Us
               </Link>
               <span
                 onClick={() => handleScrollTo("howItWorks")}
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 How it Works
               </span>
 
               <span
                 onClick={() => handleScrollTo("faq")}
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 FAQ
               </span>
 
               <Link
                 to="/contact"
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 Contact Us
               </Link>
-              <Link
-                to="/terms"
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
-              >
-                Terms & Conditions
-              </Link>
-
-              <Link
-                to="/policy"
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to="/safedatingpolicy"
-                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1"
-              >
-                Safe Dating Policy
-              </Link>
+             
             </nav>
           </div>
 

@@ -5547,6 +5547,7 @@ button {
       }
       .story-wrp .story-row .story-image {
         height: 270px;
+        width: 270px !important;
     }
 
       .dif-block {
@@ -5807,7 +5808,7 @@ button {
         display: none;
        }
        .mobile-heading {
-        display: block !important;
+        display: none !important;
        }
        .footer-bottom h4 {
         font-size: 13px;
@@ -6497,7 +6498,7 @@ header .btn-main:hover {
     .footer-bottom {margin-left: 0;}
     .footer-inner-main {align-items: center;text-align: center;}
     .footer-top img {margin: 0 auto;}
-    .mobile-heading {display: block !important;}
+    .mobile-heading {display: none !important;}
     .desktop-heading {display: none !important;}
     .faq-right h2 {margin-bottom: 12px;}
     .intro-different-wrp {
