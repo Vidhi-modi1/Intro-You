@@ -47,6 +47,7 @@ export function HomePage({ }: HomePageProps) {
   const [lookingFor, setLookingFor] = useState("Man");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const location = useLocation();
+  const [refCode,setRefCode] = useState<string | null>(null);
 
   const faqs = [
     {
@@ -110,6 +111,15 @@ export function HomePage({ }: HomePageProps) {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      console.log("Referral code:", ref);
+      setRefCode(ref);
+    }
+  }, [location]);
+
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
@@ -124,7 +134,7 @@ export function HomePage({ }: HomePageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <HeaderApp />
+      <HeaderApp  refCode={refCode}/>
 
       {/* Hero/Banner Section */}
       <section
@@ -150,25 +160,13 @@ export function HomePage({ }: HomePageProps) {
           </p>
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
-            <a href="https://introyou-beta.vercel.app/profile"
+          <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
               style={{ backgroundColor: "#820080" }}
             >
               Let's Find Your Match
             </a>
-            {/* <button
-              onClick={() => navigate('/pricing')}
-              className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
-              style={{ backgroundColor: "#171D29" }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#2A3441";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#171D29";
-              }}
-            >
-              View Pricing
-            </button> */}
+
 
             <a
               //href=""
@@ -464,7 +462,7 @@ export function HomePage({ }: HomePageProps) {
 
                   <a
                     //href="https://introyou-beta.vercel.app/login"
-                    href="https://introyou-beta.vercel.app/profile"
+                    href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
                     //onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 mt-6 flex items-center justify-center gap-2 btn-main"
                     style={{ backgroundColor: "#820080" }}
@@ -664,7 +662,7 @@ export function HomePage({ }: HomePageProps) {
 
           {/* CTA Button */}
           <div className="text-center mt-10 btn-wrp">
-            <a href="https://introyou-beta.vercel.app/profile"
+            <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
@@ -917,7 +915,7 @@ export function HomePage({ }: HomePageProps) {
 
           {/* CTA Button */}
           <div className="text-center mt-12 btn-wrp">
-            <a href="https://introyou-beta.vercel.app/profile"
+            <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
@@ -960,16 +958,16 @@ export function HomePage({ }: HomePageProps) {
                       Tired of dating apps?
                     </h3>
                     <p className="text-[18px] mb-6 opacity-90 letter-06">
-                      That’s because they are built to keep you scrolling & single. We’re not. Let us IntroYou.
+                      That’s because they are built to keep you scrolling & single. We’re not. Let us <span className="font-bold">IntroYou</span>.
                     </p>
-                    <a href="https://introyou-beta.vercel.app/profile"
+                    <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
                       className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 mx-auto w-full btn-main letter-04"
                       style={{ backgroundColor: "#820080" }}
                     >
                       Tell us who you are looking for
                     </a>
                     <p className="text-sm mt-2 opacity-75 text-center grey-text letter-06">
-                      It takes only 3-minutes
+                      It takes only 3-minutes!
                     </p>
                   </div>
                 </div>

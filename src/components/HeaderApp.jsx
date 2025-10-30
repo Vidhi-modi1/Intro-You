@@ -6,7 +6,7 @@ import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import tiktokIcon from "figma:asset/e2588539a1e2311495c764cb38440d49056e7b2f.png";
 import heartButtonIcon from "figma:asset/3b78bb2c9df6774abaf1349c5427ba87c276ded9.png";
 
-const HeaderApp = () => {
+const HeaderApp = ({refCode=null}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,19 +24,35 @@ const HeaderApp = () => {
   }, [mobileMenuOpen]);
   
 
+  // const handleScrollTo = (id) => {
+  //   setMobileMenuOpen(!mobileMenuOpen)
+  //   if (location.pathname !== "/") {
+  //     navigate("/", { state: { scrollTo: id } });
+  //   } else {
+  //     const element = document.getElementById(id);
+  //     if (element) {
+        
+  //       element.scrollIntoView({ behavior: "smooth" });
+  //     }
+  //   }
+  // };
   const handleScrollTo = (id) => {
-    setMobileMenuOpen(!mobileMenuOpen)
+    setMobileMenuOpen(!mobileMenuOpen);
+  
     if (location.pathname !== "/") {
       // Navigate to home page and pass target id
       navigate("/", { state: { scrollTo: id } });
     } else {
-      // Already on home page, scroll directly
+      // Already on home page, scroll directly with 30px offset
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const yOffset = -50; // offset of 30px from top
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
   };
+  
   return (
 
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -107,10 +123,15 @@ const HeaderApp = () => {
               Why IntroYou
             </span>
             <Link
-              to="/pricing"
+              to="/"
+              className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
+            >
+              <span
+              onClick={() => handleScrollTo("meetFounders")}
               className="text-gray-700 hover:text-[#820080] transition-colors duration-200"
             >
               About Us
+            </span>
             </Link>
             <span
               onClick={() => handleScrollTo("howItWorks")}
@@ -215,7 +236,7 @@ const HeaderApp = () => {
               }}
             >
               <a
-                href="https://introyou-beta.vercel.app/profile"
+                href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center px-2"
                 style={{ backgroundColor: "#820080" }}
               >
@@ -276,10 +297,15 @@ const HeaderApp = () => {
                 Why IntroYou
               </span>
               <Link
-                to="/pricing"
+                to="/"
+                className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
+              >
+                <span
+                onClick={() => handleScrollTo("meetFounders")}
                 className="block text-gray-700 hover:text-[#820080] transition-all duration-200 hover:translate-x-1 cursor-pointer"
               >
                 About Us
+              </span>
               </Link>
               <span
                 onClick={() => handleScrollTo("howItWorks")}
@@ -318,10 +344,10 @@ const HeaderApp = () => {
               transitionDelay: mobileMenuOpen ? '400ms' : '0ms'
             }}
           >
-            <p>© 2025 IntroYou</p>
-            <p>All Rights Reserved</p>
+            <p className="font-bold">© 2025 IntroYou</p>
+            <p className="font-normal copy-medium">All Rights Reserved</p>
             <div className="bottom-header">
-              <a href="#" className="hover:text-[#820080] transition-colors duration-200">introyou.co.uk</a>
+              <a href="#" className="hover:text-[#820080] transition-colors duration-200 font-normal sf-font">introyou.co.uk</a>
             </div>
           </div>
         </div>

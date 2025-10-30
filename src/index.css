@@ -5461,7 +5461,7 @@ button {
     }
 
     .intro-left {
-      padding: 52px 32px 0 32px;
+      padding: 52px 32px 0 32px !important;
     }
      .intro-right {
       padding: 40px 24px;
@@ -6401,6 +6401,9 @@ header .btn-main:hover {
   }
 }
 @media (max-width: 1199px) {
+  .header-footer-copy p {
+    font-size: 12px;
+  }
   .story-wrp .story-inner {
     justify-content: center;
   }
@@ -6726,8 +6729,8 @@ footer ul li a:hover {
   height: 48px;
 }
 .sf-font {
-font-family: 'SF Pro Text', sans-serif;
-font-weight: 600;
+  font-family: 'SF Pro Text';
+  font-weight: 600;
 }
 
 .raleway-font {
@@ -6736,4 +6739,21 @@ font-weight: 600;
 
 .font-extrabold {
   font-weight: 900;
+}
+
+.lucide-chevron-down {
+  color: #000 !important;
+}
+
+.header-footer-copy p {
+  font-family: 'SF Pro Text', sans-serif;
+}
+
+.copy-medium {
+  font-family: 'SF Pro Text', sans-serif;
+  font-weight: 500;
+}
+
+.bottom-header a {
+  font-weight: 400 !important;
 }

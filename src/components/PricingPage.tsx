@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -24,6 +24,8 @@ export function PricingPage({ }: PricingPageProps) {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [expandedCard, setExpandedCard] = useState<number | null>(1);
+  const location = useLocation();
+  const [refCode,setRefCode] = useState<string | null>(null);
 
   const membershipTiers = [
     {
@@ -121,15 +123,20 @@ export function PricingPage({ }: PricingPageProps) {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-
-
   const toggleCard = (index: number) => {
     if (expandedCard !== index) {
       setExpandedCard(index);
     }
   };
   
-  
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      console.log("Referral code:", ref);
+      setRefCode(ref);
+    }
+  }, [location]);
   
   return (
     <div className="min-h-screen bg-white ctm-body-main">
@@ -547,7 +554,7 @@ export function PricingPage({ }: PricingPageProps) {
 
           {/* CTA Button */}
           <div className="text-center mt-12 btn-wrp">
-            <a href="https://introyou-beta.vercel.app/profile"
+            <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main ctm-btn-icon"
               style={{ backgroundColor: "#820080" }}
             >
