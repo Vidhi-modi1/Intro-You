@@ -82,6 +82,56 @@ export function HomePage({ }: HomePageProps) {
     },
   ];
 
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const ref = params.get("ref");
+
+  if (ref) {
+    setRefCode(ref);
+
+    // Unique key per referral code (prevents recounting in same browser)
+    const storageKey = `referral_click_${ref}`;
+    const alreadyCounted = localStorage.getItem(storageKey);
+
+    if (!alreadyCounted) {
+
+      const countReferralClick = async () => {
+        try {
+          const response = await fetch(
+            "https://lvpro.live/introyou/api/count-refferal-clicks",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: new URLSearchParams({ ref }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          // ✅ Save to localStorage so it won’t count again in this browser
+          if (data.status === true) {
+            localStorage.setItem(storageKey, "counted");
+          }
+        } catch (error) {
+          console.error("Error counting referral click:", error);
+        }
+      };
+
+      countReferralClick();
+    } else {
+      console.log(`Referral '${ref}' already counted in this browser`);
+    }
+  }
+}, [location]);
+
+
+
   // Add this useEffect after your useState
   useEffect(() => {
     if (mobileMenuOpen) {
