@@ -28,7 +28,6 @@ import newHeartIcon from "figma:asset/6a1b654a7eeca9a8d7baeba8bd31a76f96a7d0b2.p
 import coupleImage from "figma:asset/3de54880b8a6b5ee1f5705a511ff2be04da832a8.png";
 import yahooLogoExtra from "figma:asset/290973993221e5de301713490e3618ef76960344.png";
 
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -68,17 +67,17 @@ export function HomePage({ }: HomePageProps) {
     {
       question: "Will my profile be visible to everyone?",
       answer:
-        "Your profile visibility is controlled and only shown to carefully selected potential matches.",
+        "No. Your profile is 100% private. It is never public and is only shared with matches we have personally selected for you.",
     },
     {
       question: "How do I actually get matched and speak to someone?",
       answer:
-        "Our team handles the matching process and facilitates introductions between compatible members.",
+        "Our team hand-picks your matches. When we find a connection, we share their profile with you on our platform, where you can decide to accept the introduction or pass.",
     },
     {
       question: "Is this just for serious relationships?",
       answer:
-        "We cater to various relationship goals, from casual dating to serious long-term commitments.",
+        "We cater to various relationship goals. Whether you are looking for a serious commitment or simply want to date with intention and see where things go, we match you based on exactly what you are looking for.",
     },
   ];
 
@@ -130,8 +129,6 @@ useEffect(() => {
   }
 }, [location]);
 
-
-
   // Add this useEffect after your useState
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -145,23 +142,45 @@ useEffect(() => {
     };
   }, [mobileMenuOpen]);
 
-  useEffect(() => {
-    if (location.state?.scrollTo) {
-      const scrollToElement = () => {
-        const element = document.getElementById(location.state.scrollTo);
-        if (element) {
-          const yOffset = -80;
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        } else {
-          requestAnimationFrame(scrollToElement);
-        }
-      };
-      scrollToElement();
-    }
-  }, [location.state]);
+  // useEffect(() => {
+  //   if (location.state?.scrollTo) {
+  //     const scrollToElement = () => {
+  //       const element = document.getElementById(location.state.scrollTo);
+  //       if (element) {
+  //         const yOffset = -80;
+  //         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  //         window.scrollTo({ top: y, behavior: "smooth" });
+  //       } else {
+  //         requestAnimationFrame(scrollToElement);
+  //       }
+  //     };
+  //     scrollToElement();
+  //   }
+  // }, [location.state]);
 
   useEffect(() => {
+  if (location.state?.scrollTo) {
+    const targetId = location.state.scrollTo;
+
+    const scrollToElement = () => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        const yOffset = -80;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        return;
+      }
+      requestAnimationFrame(scrollToElement);
+    };
+
+    // Start scrolling
+    scrollToElement();
+
+    // Remove state so back button doesn't scroll again
+    window.history.replaceState({}, document.title);
+  }
+}, [location]);
+useEffect(() => {
     const params = new URLSearchParams(location.search);
     const ref = params.get("ref");
     if (ref) {
@@ -210,13 +229,12 @@ useEffect(() => {
           </p>
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
-          <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+          <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
               style={{ backgroundColor: "#820080" }}
             >
               Let's Find Your Match
             </a>
-
 
             <a
               //href=""
@@ -237,7 +255,7 @@ useEffect(() => {
         >
           <div className="sub-title text-center pb-[16px]">
             <span className="text-white text-[14px] leading-[30px] font-semibold">
-              In the press
+               Founders Press
             </span>
           </div>
 
@@ -265,7 +283,7 @@ useEffect(() => {
                 src={yahooLogo}
                 alt="Yahoo"
                 className="h-10 object-contain flex-shrink-0"
-                width="150"
+                width="70"
                 height="37"
               />
               <img
@@ -286,7 +304,7 @@ useEffect(() => {
                 src={eveningStandardLogo}
                 alt="Evening Standard"
                 className="h-10 object-contain flex-shrink-0"
-                width="150"
+                width="70"
                 height="34"
               />
               <img
@@ -343,10 +361,11 @@ useEffect(() => {
           <div className="md:hidden px-4 mobile-slider">
             <Swiper
               modules={[FreeMode, Autoplay, Pagination]}
-              spaceBetween={20}
-              slidesPerView={3}
-              freeMode={false}
-              loop={true}
+              spaceBetween={30}
+              // slidesPerView={3}
+              slidesPerView="auto"
+              freeMode={true}
+              loop={false}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
@@ -362,56 +381,56 @@ useEffect(() => {
                 <img
                   src={bbcLogo}
                   alt="BBC"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={itvLogo}
                   alt="ITV"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={yahooLogo}
                   alt="Yahoo"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={okLogo}
                   alt="OK!"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={helloLogo}
                   alt="HELLO!"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={eveningStandardLogo}
                   alt="Evening Standard"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={metroLogo}
                   alt="Metro"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
                   src={yahooLogoExtra}
                   alt="Yahoo"
-                  className="h-10 object-contain w-full"
+                  className="h-10 object-contain"
                 />
               </SwiperSlide>
             </Swiper>
@@ -512,7 +531,7 @@ useEffect(() => {
 
                   <a
                     //href="https://introyou-beta.vercel.app/login"
-                    href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+                    href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
                     //onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 mt-6 flex items-center justify-center gap-2 btn-main"
                     style={{ backgroundColor: "#820080" }}
@@ -537,7 +556,7 @@ useEffect(() => {
           <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-[48px] playfair-display font-semibold letter-53 text-0E0E0E">
               Why <span style={{ color: "#820080" }}>IntroYou</span> is
-              Different?
+              Different
             </h2>
             <p className="text-lg text-0E0E0E max-w-2xl mx-auto letter-06">
             Quality over volume. No swiping, no games. Get curated introductions focused on compatibility with your values.
@@ -671,7 +690,8 @@ useEffect(() => {
                     Quality Over Quantity
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed letter-04 text-0E0E0E">
-                    No bot. No spam. No time-wasters. Every people is vetted by u, so you only meet like-minded singles who match your standards.
+                    No bot. No spam. No time-wasters. Every person is vetted by us, so 
+you only meet like-minded singles who match your standards.
                   </p>
                 </div>
               </div>
@@ -712,11 +732,11 @@ useEffect(() => {
 
           {/* CTA Button */}
           <div className="text-center mt-10 btn-wrp">
-            <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+            <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
-              <span className="letter-04 sf-font">Find your match</span>
+              <span className="letter-04">Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>
@@ -816,7 +836,7 @@ useEffect(() => {
 
                 <p>
                   We were lucky enough to connect naturally in person. But we
-                  know it isn't that easy anymore. Dating apps loneliness is
+                  know it isn't that easy anymore. Dating app loneliness is
                   real, and they've lost the genuine spark of real connection.
                 </p>
 
@@ -856,7 +876,7 @@ useEffect(() => {
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-[48px] mb-4 playfair-display font-semibold letter-53 text-0E0E0E">
-              How <span style={{ color: "#820080" }}>IntroYou</span> Works?
+              How <span style={{ color: "#820080" }}>IntroYou</span> Works
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto text-0E0E0E">
             Personalised, compatible introductions.
@@ -965,11 +985,11 @@ useEffect(() => {
 
           {/* CTA Button */}
           <div className="text-center mt-12 btn-wrp">
-            <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+            <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
-              <span className="letter-04 sf-font" style={{ backgroundColor: "transparent" }}>Find your match</span>
+              <span className="letter-04" style={{ backgroundColor: "transparent" }}>Find your match</span>
               <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
             </a>
           </div>
@@ -1010,14 +1030,14 @@ useEffect(() => {
                     <p className="text-[18px] mb-6 opacity-90 letter-06">
                       That’s because they are built to keep you scrolling & single. We’re not. Let us <span className="font-bold">IntroYou</span>.
                     </p>
-                    <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+                    <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
                       className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 mx-auto w-full btn-main letter-04"
                       style={{ backgroundColor: "#820080" }}
                     >
                       Tell us who you are looking for
                     </a>
                     <p className="text-sm mt-2 opacity-75 text-center grey-text letter-06">
-                      It takes only 3-minutes!
+                      It takes only 3 minutes!
                     </p>
                   </div>
                 </div>

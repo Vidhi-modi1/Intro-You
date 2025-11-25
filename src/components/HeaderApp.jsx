@@ -22,7 +22,21 @@ const HeaderApp = ({refCode=null}) => {
       return () => document.body.classList.remove("overflow-hidden");
     }
   }, [mobileMenuOpen]);
-  
+
+  useEffect(() => {
+  if (location.state?.scrollTo) {
+    const id = location.state.scrollTo;
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        const yOffset = -50;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 300);
+    window.history.replaceState({}, document.title);
+  }
+}, [location]);
 
   // const handleScrollTo = (id) => {
   //   setMobileMenuOpen(!mobileMenuOpen)
@@ -175,7 +189,7 @@ const HeaderApp = ({refCode=null}) => {
 
           {/* Right: Login button */}
           <div className="flex-1 flex justify-end login-button">
-            <a href="https://introyou-beta.vercel.app/login"
+            <a href="https://members.intro-you.com/login"
               className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 btn-main"
               style={{ backgroundColor: "#171D29" }}
             >
@@ -236,18 +250,18 @@ const HeaderApp = ({refCode=null}) => {
               }}
             >
               <a
-                href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+                href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 flex-1 py-3 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center px-2"
                 style={{ backgroundColor: "#820080" }}
               >
-                <span className="letter-04 sf-font">Join Now </span>
+                <span className="letter-04">Join Now </span>
                 <img src={heartButtonIcon} alt="heart" className="w-5 h-5 h-icon" />
               </a>
 
               <a
                 //href="/login"
-                href="https://introyou-beta.vercel.app/login"
-                className="flex-1 py-3 rounded-md text-white transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center letter-04 sf-font px-2"
+                href="https://members.intro-you.com/login"
+                className="flex-1 py-3 rounded-md text-white transition-all duration-200 hover:shadow-lg hover:scale-[1.02] text-center letter-04 px-2"
                 style={{ backgroundColor: "#171D29" }}
               >
                 Login
@@ -344,10 +358,11 @@ const HeaderApp = ({refCode=null}) => {
               transitionDelay: mobileMenuOpen ? '400ms' : '0ms'
             }}
           >
-            <p className="font-bold">© 2025 IntroYou</p>
+           
             <p className="font-normal copy-medium">All Rights Reserved</p>
             <div className="bottom-header">
-              <a href="#" className="hover:text-[#820080] transition-colors duration-200 font-normal sf-font">introyou.co.uk</a>
+              {/* <a href="#" className="hover:text-[#820080] transition-colors duration-200 font-normal sf-font">introyou.co.uk</a> */}
+               <p className="font-bold">© 2025 IntroYou</p>
             </div>
           </div>
         </div>
@@ -355,6 +370,5 @@ const HeaderApp = ({refCode=null}) => {
     </header>
   )
 }
-
 
 export default HeaderApp

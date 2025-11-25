@@ -10,7 +10,8 @@ import FooterApp from "./FooterApp";
 import HeaderApp from "./HeaderApp";
 
 // ✅ Environment variable usage
-const API_URL = `${import.meta.env.VITE_NEXT_PUBLIC_API_URL || "https://lvpro.live/introyou/api/"}contact-us`;
+// const API_URL = `${import.meta.env.VITE_NEXT_PUBLIC_API_URL || "https://lvpro.live/introyou/api/"}contact-us`;
+const API_URL = `${import.meta.env.VITE_NEXT_PUBLIC_API_URL || "https://console.intro-you.com/api/"}contact-us`;
 
 export default function Contact() {
   const navigate = useNavigate();

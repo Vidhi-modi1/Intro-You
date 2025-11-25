@@ -104,18 +104,18 @@ export function PricingPage({ }: PricingPageProps) {
     {
       question: "Will my profile be visible to everyone?",
       answer:
-        "Your profile visibility is controlled and only shown to carefully selected potential matches.",
+        "No. Your profile is 100% private. It is never public and is only shared with matches we have personally selected for you.",
     },
     {
       question:
         "How do I actually get matched and speak to someone?",
       answer:
-        "Our team handles the matching process and facilitates introductions between compatible members.",
+        "Our team hand-picks your matches. When we find a connection, we share their profile with you on our platform, where you can decide to accept the introduction or pass.",
     },
     {
       question: "Is this just for serious relationships?",
       answer:
-        "We cater to various relationship goals, from casual dating to serious long-term commitments.",
+        "We cater to various relationship goals. Whether you are looking for a serious commitment or simply want to date with intention and see where things go, we match you based on exactly what you are looking for.",
     },
   ];
 
@@ -554,7 +554,7 @@ export function PricingPage({ }: PricingPageProps) {
 
           {/* CTA Button */}
           <div className="text-center mt-12 btn-wrp">
-            <a href={`https://introyou-beta.vercel.app/profile` + (refCode ? `?ref=${refCode}` : '')}
+            <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main ctm-btn-icon"
               style={{ backgroundColor: "#820080" }}
             >
@@ -565,13 +565,10 @@ export function PricingPage({ }: PricingPageProps) {
         </div>
       </section>
 
-
-
       {/* FAQ Section */}
       <section className="faq-wrapper" style={{ backgroundColor: "#F2F0F5" }} id="faq">
         <div className="container">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 faq-row justify-center">
-
 
             {/* Right Content - FAQ */}
             <div className="w-full lg:w-1/2 faq-right">

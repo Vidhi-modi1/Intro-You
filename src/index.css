@@ -6117,7 +6117,6 @@ button {
   border-image-slice: 1;
 }
 
-
 /* button */
 
 header .btn-main:hover {
@@ -6756,4 +6755,8 @@ footer ul li a:hover {
 
 .bottom-header a {
   font-weight: 400 !important;
+}
+
+.swiper-slide {
+  width: auto !important;
 }
