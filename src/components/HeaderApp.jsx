@@ -88,8 +88,9 @@ const HeaderApp = ({refCode=null}) => {
             {/* Social media icons (always visible) */}
             <div className="flex items-center space-x-4 social-icons">
               <a
-                href="#"
+                href="https://www.instagram.com/letsintroyou/"
                 className="p-2 rounded-full hover:bg-purple-50 transition-colors duration-200"
+                target="_blank"
               >
                 <img
                   src={instagramIcon}
@@ -100,8 +101,9 @@ const HeaderApp = ({refCode=null}) => {
                 />
               </a>
               <a
-                href="#"
+                href="https://tiktok.com/letsintroyou/"
                 className="p-2 rounded-full hover:bg-purple-50 transition-colors duration-200"
+                target="_blank"
               >
                 <img src={tiktokIcon} alt="TikTok" className="w-5 h-5" />
               </a>

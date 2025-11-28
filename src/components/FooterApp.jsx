@@ -236,7 +236,7 @@ const FooterApp = () => {
             {/* Social Media Icons - Separate and Centered */}
             <div className="flex items-center justify-center gap-4 footer-social">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/letsintroyou/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -249,7 +249,7 @@ const FooterApp = () => {
                 <span className="text-sm text-gray-600">Instagram</span>
               </a>
               <a
-                href="https://tiktok.com"
+                href="https://www.tiktok.com/letsintroyou"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
