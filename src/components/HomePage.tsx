@@ -97,7 +97,7 @@ useEffect(() => {
       const countReferralClick = async () => {
         try {
           const response = await fetch(
-            "https://lvpro.live/introyou/api/count-refferal-clicks",
+            "https://console.intro-you.com/api/count-refferal-clicks",
             {
               method: "POST",
               headers: {
@@ -221,11 +221,12 @@ useEffect(() => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">
           <h1 className="text-5xl md:text-[64px] mb-2 playfair-display leading-tight banner-heading font-semibold">
-            The Intentional Way To Date
+            Dating, Done Properly.
           </h1>
           <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-2xl mx-auto leading-10 font-normal letter-04">
-            Thoughtful introductions, designed for people who want something
-            real.
+            No Searching. No Swiping. <br></br>
+Get Real, Handpicked Introductions.
+
           </p>
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
