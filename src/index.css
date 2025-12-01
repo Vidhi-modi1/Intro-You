@@ -6760,3 +6760,20 @@ footer ul li a:hover {
 .swiper-slide {
   width: auto !important;
 }
+
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+
+/* video {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+video.loaded {
+  opacity: 1;
+} */

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {  ChevronDown, ChevronUp } from "lucide-react";
 import heroBackground from "../assets/banner-video.mov";
+import posterImg from "../assets/poster-img.png";
 import bbcLogo from "figma:asset/1210440e0f5e84f8df640df0d164921393ab8ca5.png";
 import heartButtonIcon from "figma:asset/3b78bb2c9df6774abaf1349c5427ba87c276ded9.png";
 import circleShape from "figma:asset/aad7ff2e480d658db8abe3b73463af325f0a21df.png";
@@ -80,6 +81,7 @@ export function HomePage({ }: HomePageProps) {
         "We cater to various relationship goals. Whether you are looking for a serious commitment or simply want to date with intention and see where things go, we match you based on exactly what you are looking for.",
     },
   ];
+
 
 useEffect(() => {
   const params = new URLSearchParams(location.search);
@@ -208,15 +210,21 @@ useEffect(() => {
       {/* Hero/Banner Section */}
       <section
         className="text-white py-20 px-6 relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
-        style={{ backgroundImage: `url(${heroBackground})` }}
+        style={{  backgroundImage: `url('/poster-img.png')`,
+  backgroundSize: "cover",
+  backgroundPosition: "center", }}
       >
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src={heroBackground}
-          autoPlay
-          loop
-          muted
-          playsInline
+  src={heroBackground}
+  poster={posterImg}
+  autoPlay
+  muted
+  loop
+  playsInline
+  // webkit-playsinline="true"
+  preload="auto"
+  controls={false}
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">

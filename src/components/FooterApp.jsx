@@ -31,7 +31,7 @@ const FooterApp = () => {
           {/* Left Content - Logo and Description */}
           <div className="w-full lg:w-2/12 footer-top">
             <img src={logoImage} alt="IntroYou" className="h-8 mb-4 cursor-pointer" onClick={() => navigate("/")} />
-            <p className="text-black mb-6">
+            <p className="text-black mb-6 mt-2">
               No Searching. No Swiping.  
               <br />
               Get Real, Compatible Introductions.
