@@ -162,7 +162,7 @@ const PolicyPage = () => {
           data, please contact:
         </p>
 
-        <p className="mb-2"> Data Protection Officer (DPO) Intro International Group L.L.C-FZ Email: <a href="mailto:support@intro-you.com" className="text-[#820080] underline ml-1">support@intro-you.com</a></p>
+        <p className="mb-2"> Data Protection Officer (DPO) Intro International Group L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E. Email: <a href="mailto:support@intro-you.com" className="text-[#820080] underline ml-1">support@intro-you.com</a></p>
 
         <h2 className="font-semibold text-xl text-[#820080] mb-2"> 15. Updates to This Policy</h2>
         <p className="mb-2">

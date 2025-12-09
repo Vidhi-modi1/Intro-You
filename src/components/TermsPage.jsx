@@ -100,7 +100,7 @@ service itself is provided exclusively by Intro International Group L.L.C-FZ.
             more compatible handpicked match suggestions. The IntroYou service is not 
             offered to, marketed to, or intended for residents of the United Arab Emirates. All 
             services including matchmaking, user support, and platform operation are supplied 
-            exclusively from the UAE by Intro International Group L.L.C-FZ. Payments may be 
+            exclusively from the UAE by Intro International Group L.L.C-FZ, Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E. Payments may be 
             collected by a UK-based payment agent, but the place of supply remains the UAE.
             By creating an account and providing this information, <strong>you explicitly consent to 
             our collection and use of your sensitive personal data</strong> for matchmaking 
@@ -169,8 +169,8 @@ service itself is provided exclusively by Intro International Group L.L.C-FZ.
           IntroYou offers multiple membership tiers to 
           cater to different user needs. Currently, we provide a <strong>Free Passive Plan</strong> and two 
           premium paid plans known as the <strong>Complete Membership Plan</strong> priced at £199.00 
-          and <strong>Concierge Plan</strong> priced at £499.00. Each plan offers a different level of service 
-          and features, as outlined below and on our website:
+          and <strong>Concierge Plan </strong>
+           priced at £499.00. IntroYou uses a human-curated matchmaking model and does not rely solely on automated or algorithmic matching systems.
         </p>
         <ul className="list-disc pl-5 space-y-2 mb-2">
           <li>The <strong>Passive Membership:</strong> is free. You may be shown to others and 

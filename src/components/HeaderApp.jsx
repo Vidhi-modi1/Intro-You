@@ -101,7 +101,7 @@ const HeaderApp = ({refCode=null}) => {
                 />
               </a>
               <a
-                href="https://tiktok.com/letsintroyou/"
+                href="https://www.tiktok.com/@letsintroyou?_r=1&_t=ZN-91vvRHIe6Ss"
                 className="p-2 rounded-full hover:bg-purple-50 transition-colors duration-200"
                 target="_blank"
               >
@@ -191,7 +191,7 @@ const HeaderApp = ({refCode=null}) => {
 
           {/* Right: Login button */}
           <div className="flex-1 flex justify-end login-button">
-            <a href="https://members.intro-you.com/login"
+            <a href="https://members.intro-you.com/discover"
               className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 btn-main"
               style={{ backgroundColor: "#171D29" }}
             >

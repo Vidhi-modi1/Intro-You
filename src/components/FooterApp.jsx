@@ -249,7 +249,7 @@ const FooterApp = () => {
                 <span className="text-sm text-gray-600">Instagram</span>
               </a>
               <a
-                href="https://www.tiktok.com/letsintroyou"
+                href="https://www.tiktok.com/@letsintroyou?_r=1&_t=ZN-91vvRHIe6Ss"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"

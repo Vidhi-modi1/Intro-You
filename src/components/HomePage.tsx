@@ -82,6 +82,21 @@ export function HomePage({ }: HomePageProps) {
     },
   ];
 
+  useEffect(() => {
+  const video = document.querySelector("video");
+  if (video) {
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        video.muted = true;
+        video.play();
+      });
+    }
+  }
+}, []);
+
+
+
 
 useEffect(() => {
   const params = new URLSearchParams(location.search);
@@ -203,6 +218,7 @@ useEffect(() => {
   }
 
   return (
+    
     <div className="min-h-screen bg-white">
       {/* Header */}
       <HeaderApp  refCode={refCode}/>
@@ -238,12 +254,44 @@ Get Real, Handpicked Introductions.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
-          <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
+          {/* <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
               style={{ backgroundColor: "#820080" }}
             >
               Let's Find Your Match
-            </a>
+            </a> */}
+            {/* <a
+            target="_blank"
+  href="#"
+  onClick={(e) => {
+    e.preventDefault(); // stop default link behavior
+
+    const isLoggedIn = localStorage.getItem("isLogin") === "true";
+    const refCodeParam = refCode ? `?ref=${refCode}` : "";
+
+    if (isLoggedIn) {
+      // user logged in → go to discover
+      window.location.href = `https://members.intro-you.com/discover${refCodeParam}`;
+    } else {
+      // user NOT logged in → go to profile
+      window.location.href = `https://members.intro-you.com/profile${refCodeParam}`;
+    }
+  }}
+  className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
+  style={{ backgroundColor: "#820080" }}
+>
+  Let's Find Your Match
+</a> */}
+
+<a href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
+ 
+  className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
+  style={{ backgroundColor: "#820080" }}
+>
+  Let’s Find Your Match
+</a>
+
+
 
             <a
               //href=""
@@ -540,7 +588,7 @@ Get Real, Handpicked Introductions.
 
                   <a
                     //href="https://introyou-beta.vercel.app/login"
-                    href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
+                  href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
                     //onClick={() => navigate('/pricing')}
                     className="w-full py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 mt-6 flex items-center justify-center gap-2 btn-main"
                     style={{ backgroundColor: "#820080" }}
@@ -741,7 +789,8 @@ you only meet like-minded singles who match your standards.
 
           {/* CTA Button */}
           <div className="text-center mt-10 btn-wrp">
-            <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
+            <a href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
+
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
@@ -994,7 +1043,7 @@ you only meet like-minded singles who match your standards.
 
           {/* CTA Button */}
           <div className="text-center mt-12 btn-wrp">
-            <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
+             <a href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 btn-link btn-main"
               style={{ backgroundColor: "#820080" }}
             >
@@ -1039,7 +1088,7 @@ you only meet like-minded singles who match your standards.
                     <p className="text-[18px] mb-6 opacity-90 letter-06">
                       That’s because they are built to keep you scrolling & single. We’re not. Let us <span className="font-bold">IntroYou</span>.
                     </p>
-                    <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
+                    <a href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
                       className="px-6 block text-center py-3 text-white font-medium rounded-lg transition-all duration-300 mx-auto w-full btn-main letter-04"
                       style={{ backgroundColor: "#820080" }}
                     >
