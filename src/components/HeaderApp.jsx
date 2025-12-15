@@ -191,7 +191,7 @@ const HeaderApp = ({refCode=null}) => {
 
           {/* Right: Login button */}
           <div className="flex-1 flex justify-end login-button">
-            <a href="https://members.intro-you.com/discover"
+            <a href="https://members.intro-you.com/discover?go="
               className="px-[62px]  py-[12px] sm:px-4 sm:py-2 text-white font-medium rounded-lg transition-all duration-300 btn-main"
               style={{ backgroundColor: "#171D29" }}
             >

@@ -170,7 +170,7 @@ service itself is provided exclusively by Intro International Group L.L.C-FZ.
           cater to different user needs. Currently, we provide a <strong>Free Passive Plan</strong> and two 
           premium paid plans known as the <strong>Complete Membership Plan</strong> priced at £199.00 
           and <strong>Concierge Plan </strong>
-           priced at £499.00. IntroYou uses a human-curated matchmaking model and does not rely solely on automated or algorithmic matching systems.
+           priced at £499.00. IntroYou uses a human-curated matchmaking model and does not rely on automated or algorithmic matching systems.
         </p>
         <ul className="list-disc pl-5 space-y-2 mb-2">
           <li>The <strong>Passive Membership:</strong> is free. You may be shown to others and 
