@@ -95,6 +95,7 @@ import { defineConfig } from 'vite';
     },
   },
   server: {
+    host: true,
     port: 3000,
     open: true,
   },

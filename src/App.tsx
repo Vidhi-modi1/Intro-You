@@ -52,7 +52,7 @@
 // }
 
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { HomePage } from "./components/HomePage";
@@ -110,6 +110,32 @@ function RegionGate() {
 }
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let done = false;
+    const finish = () => {
+      if (!done) {
+        done = true;
+        setLoading(false);
+      }
+    };
+    const fontsReady = (document as any).fonts?.ready ?? Promise.resolve();
+    const windowLoaded = new Promise<void>((resolve) => {
+      if (document.readyState === "complete") {
+        resolve();
+      } else {
+        window.addEventListener("load", () => resolve(), { once: true });
+      }
+    });
+    Promise.race([fontsReady, windowLoaded]).then(finish).catch(finish);
+    const timeout = setTimeout(finish, 3000);
+    return () => {
+      done = true;
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
     <HelmetProvider>
       {/* GLOBAL META TAGS — applied on ALL pages */}
@@ -141,6 +167,15 @@ export default function App() {
         <meta property="twitter:image" content="/images/logo.png" />
       </Helmet> */}
 
+      {loading && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-white z-50"
+          aria-busy="true"
+          aria-live="polite"
+        >
+          <div className="text-[#820080] text-lg">Loading...</div>
+        </div>
+      )}
       <Router basename="/">
         <ScrollToTop />
         <RegionGate />

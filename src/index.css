@@ -4,6 +4,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 /* font-family: "Raleway", sans-serif; */
 
+
+/* SF Pro Text Font */
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('/fonts/SF-Pro-Text-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Text-medium';
+  src: url('/fonts/SF-Pro-Text-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('/fonts/SF-Pro-Text-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+ .playfair-display {
+  font-family: 'Playfair Display';
+    /* font-weight: 800; */
+  }
+
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
     *, :before, :after, ::backdrop {
@@ -6388,7 +6419,7 @@ header .btn-main:hover {
     letter-spacing: -0.6px;
   }
   .story-wrp .story-image {
-    width: 100%;
+    width: 456px;
     height: 456px;
   }
   .footer-bottom {
@@ -6472,6 +6503,7 @@ header .btn-main:hover {
     width: 50%;
   }
   .story-wrp .story-image {
+    width: 386px;
     height: 386px;
   }
   .footer-top img {
@@ -6780,3 +6812,24 @@ video::-webkit-media-controls-start-playback-button {
 video.loaded {
   opacity: 1;
 } */
+
+video::-webkit-media-controls,
+video::-moz-media-controls {
+  display: none !important;
+}
+
+video {
+  pointer-events: none;
+}
+
+.hero-video {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.hero-video.show-video {
+  opacity: 1;
+}
+
+
+

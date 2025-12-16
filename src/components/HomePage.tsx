@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {  ChevronDown, ChevronUp } from "lucide-react";
-import heroBackground from "../assets/banner-video.mov";
+// import heroBackground from "../assets/banner-video.mov";
+import heroBackground from "../assets/banner-video-mp4.mp4";
 import posterImg from "../assets/poster-img.png";
 import bbcLogo from "figma:asset/1210440e0f5e84f8df640df0d164921393ab8ca5.png";
 import heartButtonIcon from "figma:asset/3b78bb2c9df6774abaf1349c5427ba87c276ded9.png";
@@ -48,6 +49,39 @@ export function HomePage({ }: HomePageProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const location = useLocation();
   const [refCode,setRefCode] = useState<string | null>(null);
+  // const videoRef = useRef<HTMLVideoElement | null>(null);
+//   const [videoReady, setVideoReady] = useState(false);
+//  const videoRef = useRef<HTMLVideoElement>(null);
+const [started, setStarted] = useState(false);
+
+const videoRef = useRef<HTMLVideoElement | null>(null);
+const [videoStarted, setVideoStarted] = useState(false);
+
+useEffect(() => {
+  const startVideo = () => {
+    if (started) return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    video.play().then(() => {
+      setStarted(true);
+      video.classList.add("show-video");
+    });
+  };
+
+  document.addEventListener("touchstart", startVideo, { once: true });
+  document.addEventListener("click", startVideo, { once: true });
+
+  return () => {
+    document.removeEventListener("touchstart", startVideo);
+    document.removeEventListener("click", startVideo);
+  };
+}, [started]);
+
 
   const faqs = [
     {
@@ -82,17 +116,76 @@ export function HomePage({ }: HomePageProps) {
     },
   ];
 
-  useEffect(() => {
-  const video = document.querySelector("video");
-  if (video) {
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        video.muted = true;
-        video.play();
-      });
-    }
+//   useEffect(() => {
+//   const video = document.querySelector("video");
+//   if (video) {
+//     const playPromise = video.play();
+//     if (playPromise !== undefined) {
+//       playPromise.catch(() => {
+//         video.muted = true;
+//         video.play();
+//       });
+//     }
+//   }
+// }, []);
+
+
+// useEffect(() => {
+//   const video = document.querySelector("video");
+//   if (!video) return;
+
+//   video.muted = true;     // 👈 set first
+//   video.playsInline = true;
+
+//   const playVideo = () => {
+//     video.play().catch(() => {});
+//   };
+
+//   video.addEventListener("loadeddata", playVideo);
+//   playVideo();
+
+//   return () => {
+//     video.removeEventListener("loadeddata", playVideo);
+//   };
+// }, []);
+
+// useEffect(() => {
+//   const video = videoRef.current;
+//   if (!video) return;
+
+//   video.muted = true;
+//   video.playsInline = true;
+
+//   const playVideo = () => video.play().catch(() => {});
+//   video.addEventListener("loadeddata", playVideo);
+//   playVideo();
+
+//   return () => video.removeEventListener("loadeddata", playVideo);
+// }, []);
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  video.muted = true;
+  video.playsInline = true;
+
+  const onPlaying = () => {
+    video.classList.add("video-ready");
+  };
+
+  video.addEventListener("playing", onPlaying);
+
+  const playAttempt = video.play();
+  if (playAttempt !== undefined) {
+    playAttempt.catch(() => {
+      // Safari fallback — user interaction later
+    });
   }
+
+  return () => {
+    video.removeEventListener("playing", onPlaying);
+  };
 }, []);
 
 
@@ -223,73 +316,67 @@ useEffect(() => {
       {/* Header */}
       <HeaderApp  refCode={refCode}/>
 
-      {/* Hero/Banner Section */}
-      <section
-        className="text-white py-20 px-6 relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
-        style={{  backgroundImage: `url('/poster-img.png')`,
-  backgroundSize: "cover",
-  backgroundPosition: "center", }}
-      >
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-  src={heroBackground}
-  poster={posterImg}
-  autoPlay
-  muted
-  loop
-  playsInline
-  // webkit-playsinline="true"
-  preload="auto"
-  controls={false}
-        />
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">
-          <h1 className="text-5xl md:text-[64px] mb-2 playfair-display leading-tight banner-heading font-semibold">
-            Dating, Done Properly.
-          </h1>
-          <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-2xl mx-auto leading-10 font-normal letter-04">
-            No Searching. No Swiping. <br></br>
-Get Real, Handpicked Introductions.
 
-          </p>
 
-          <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
-          {/* <a href={`https://members.intro-you.com/profile` + (refCode ? `?ref=${refCode}` : '')}
+{/* Hero/Banner Section */}
+<section
+  className="text-white py-20 px-6 relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
+  style={{
+    backgroundImage: `url('/poster-img.png')`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+  onTouchStart={() => {
+    // 👈 iOS FIRST TOUCH 
+    if (videoStarted) return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    video.play().then(() => {
+      setVideoStarted(true);
+    });
+  }}
+>
+  {/* VIDEO — hidden until user touches */}
+  <video
+    ref={videoRef}
+    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+      videoStarted ? "opacity-100" : "opacity-0"
+    }`}
+    src={heroBackground}
+    muted
+    loop
+    playsInline
+    preload="metadata"
+  />
+
+  <div className="absolute inset-0 bg-black/50 transition-opacity duration-700"></div>
+
+  <div className="max-w-4xl mx-auto text-center relative z-10 banner-main">
+    {/* 🔥 YOUR CONTENT — unchanged */}
+    <h1 className="text-5xl md:text-[64px] mb-2 playfair-display leading-tight banner-heading font-semibold">
+      Dating, Done Properly.
+    </h1>
+
+    <p className="text-xl md:text-[32px] mb-12 text-gray-200 max-w-2xl mx-auto leading-10 font-normal letter-04">
+      No Searching. No Swiping. <br />
+      Get Real, Handpicked Introductions.
+    </p>
+
+    {/* buttons unchanged */}
+    <div className="flex flex-col items-center justify-center gap-6 mb-16 banner-btn">
+
+            <a href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
+            
               className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
               style={{ backgroundColor: "#820080" }}
             >
-              Let's Find Your Match
-            </a> */}
-            {/* <a
-            target="_blank"
-  href="#"
-  onClick={(e) => {
-    e.preventDefault(); // stop default link behavior
-
-    const isLoggedIn = localStorage.getItem("isLogin") === "true";
-    const refCodeParam = refCode ? `?ref=${refCode}` : "";
-
-    if (isLoggedIn) {
-      // user logged in → go to discover
-      window.location.href = `https://members.intro-you.com/discover${refCodeParam}`;
-    } else {
-      // user NOT logged in → go to profile
-      window.location.href = `https://members.intro-you.com/profile${refCodeParam}`;
-    }
-  }}
-  className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
-  style={{ backgroundColor: "#820080" }}
->
-  Let's Find Your Match
-</a> */}
-
-<a href={`https://members.intro-you.com/discover?go=profile` + (refCode ? `&ref=${refCode}` : "")}
- 
-  className="px-8 py-4 text-white font-medium rounded-lg transition-all duration-300 text-lg btn-main letter-04 font-semibold"
-  style={{ backgroundColor: "#820080" }}
->
-  Let’s Find Your Match
-</a>
+              Let’s Find Your Match
+            </a>
 
 
 
@@ -301,8 +388,12 @@ Get Real, Handpicked Introductions.
               How It Works?
             </a>
           </div>
-        </div>
-      </section>
+  </div>
+  
+</section>
+
+    
+
 
       {/* Marquee Section */}
       <section className="py-8 bg-black">
