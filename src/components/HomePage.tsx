@@ -396,7 +396,7 @@ useEffect(() => {
 
 
       {/* Marquee Section */}
-      <section className="py-8 bg-black">
+      <section className="py-8 bg-black ctm-marquee-wrapper">
         <div
           className="w-full mx-auto overflow-hidden"
           style={{ maxWidth: "1070px" }}

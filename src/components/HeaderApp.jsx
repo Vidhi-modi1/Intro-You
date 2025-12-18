@@ -362,9 +362,12 @@ const HeaderApp = ({refCode=null}) => {
           >
            
             <p className="font-normal copy-medium">All Rights Reserved</p>
-            <div className="bottom-header">
+            <div className="bottom-header px-2">
               {/* <a href="#" className="hover:text-[#820080] transition-colors duration-200 font-normal sf-font">introyou.co.uk</a> */}
                <p className="font-bold">© 2025 IntroYou</p>
+               <p className="font-normal bottom-header-copy pt-1">Triple AMT Group Ltd, a company registered in England and Wales, with its
+registered office at 20-22 Wenlock Road, London, England, N1 7GU, acts on
+behalf of Intro International Group L.L.C FZ.</p>
             </div>
           </div>
         </div>

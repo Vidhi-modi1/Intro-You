@@ -24,15 +24,20 @@ const PolicyPage = () => {
 
         <h2 className="font-semibold text-xl text-[#820080] mb-2">1. Who We Are</h2>
         <p className="mb-2">
-          IntroYou is operated and supplied by Intro International Group L.L.C-FZ, a
-          company registered in Dubai, United Arab Emirates. We are the primary data controller for all
-          personal data collected through the IntroYou platform
+IntroYou is operated and supplied by Intro International Group L.L.C-FZ,
+a company registered in Dubai, United Arab Emirates, with its registered
+address at Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba,
+Dubai, U.A.E. We are the primary data controller for all personal data
+collected through the IntroYou platform.
         </p>
         <p className="mb-2">
-          Payments are processed by Triple AMT Group Ltd, a UK-based entity that acts solely as a payment
-          collection agent on our behalf. Triple AMT may access certain personal identifiers (such as your
-          email address) strictly for payment processing and customer support. Triple AMT is registered with
-          the Information Commissioner's Office (ICO) in the UK.
+          Payments are processed by Triple AMT Group Ltd (Company No.
+10502502), a UK-based entity with its registered office at 20–22
+Wenlock Road, London, England, N1 7GU, that acts solely as a
+payment collection agent on our behalf. Triple AMT may access certain
+personal identifiers (such as your email address) strictly for payment
+processing and customer support. Triple AMT is registered with the
+Information Commissioner’s Office (ICO) in the UK.
         </p>
         <h2 className="font-semibold text-xl text-[#820080] mb-2"> 2. Scope</h2>
         <p className="mb-2">

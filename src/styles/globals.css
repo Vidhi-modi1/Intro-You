@@ -227,3 +227,7 @@ html {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+.bottom-header-copy {
+    font-family: 'Playfair Display';
+}

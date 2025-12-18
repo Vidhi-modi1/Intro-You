@@ -35,9 +35,16 @@ const TermsPage = () => {
           <a href="https://intro-you.com" className="text-[#820080] underline ml-1">https://intro-you.com</a>.
         </p>
         <p className="mb-2">
-        All payments for our services are securely collected by Triple AMT Group Ltd, a UK-registered 
-company (Company No. 10502502), acting solely as a payment collection agent on our behalf. The 
-service itself is provided exclusively by Intro International Group L.L.C-FZ.
+All payments for our services are securely collected
+by Triple AMT Group Ltd (Company No. 10502502),
+a company registered in England and Wales with
+its registered office at 20–22 Wenlock Road,
+London, England, N1 7GU, acting solely as a
+payment collection agent on our behalf. The
+service itself is provided by Intro International
+Group L.L.C-FZ, registered at Meydan Grandstand,
+6th floor, Meydan Road, Nad Al Sheba, Dubai,
+U.A.E.
         </p>
         <p>
         By using the platform, you agree to these Terms. If you do not agree, you must not use the service.

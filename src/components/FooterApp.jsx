@@ -264,16 +264,19 @@ const FooterApp = () => {
 
       {/* Copyright - Full Width */}
       <div
-        className="mt-12 py-[12px] text-center footer-copy"
+        className="mt-12 py-[12px] px-2 text-center footer-copy"
         style={{
           borderTop: "1px solid rgba(0, 0, 0, 0.1)",
           backgroundColor: "#F7F7F7",
         }}
       >
-        <div className="flex items-center justify-center gap-2">
+        <div className="text-center gap-2">
           <p className="text-sm font-medium">
             &copy; 2025 IntroYou. All rights reserved.
           </p>
+          <p className="text-sm block bottom-line-copy pt-1">Triple AMT Group Ltd, a company registered in England and Wales, with its
+registered office at 20-22 Wenlock Road, London, England, N1 7GU, acts on
+behalf of Intro International Group L.L.C FZ.</p>
         </div>
       </div>
     </footer>
